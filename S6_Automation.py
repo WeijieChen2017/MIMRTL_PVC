@@ -18,7 +18,7 @@ def main():
         print(command_1)
         os.system(command_1)
 
-        command_2 = "python S4_train.py --nameDataset "+name
+        command_2 = "python S4_test.py --nameDataset "+name
         print(command_2)
         os.system(command_2)
 

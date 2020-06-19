@@ -28,7 +28,8 @@ def main():
     command += " --norm "+"batch"
 
     print(command)
-    # os.system(command)
+    os.chdir("pytorch-CycleGAN-and-pix2pix")
+    os.system(command)
 
 
 if __name__ == "__main__":
