@@ -63,10 +63,7 @@ def assemble_results(name_dataset="sk8R", data_folder="pMix", output_chan=7, res
             path_fake = "./pytorch-CycleGAN-and-pix2pix/results/"+name_dataset+"/test_latest/images/"+nii_name+"_"+str(idx)+"_fake.npy"
     #         img = cv2.resize(np.asarray(plt.imread(path_fake)), dsize=(nii_data.shape[0], nii_data.shape[1]), interpolation=cv2.INTER_CUBIC)
             img = np.squeeze(np.load(path_fake))
-            img[img<0] = 0
-            print(idx)
-            print(img.shape)
-            print(pred_fake.shape)
+            # img[img<0] = 0
             if output_chan == 1:
                 pred_fake[:, :, idx] = zoom(img[ :, :], zoom=1/resize_f)
             else:
