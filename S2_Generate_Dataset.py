@@ -1,12 +1,42 @@
 import os
 import glob
 import cv2
+import argparse
 import nibabel as nib
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.ndimage import zoom
 
 from PIL import Image
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='''This is a beta script for Partial Volume Correction in PET/MRI system. ''',
+        epilog="""All's well that ends well.""")
+
+    parser.add_argument('--nameDataset', metavar='', type=str, default="sk8R",
+                        help='Name for the dataset needed to be reverse.(sk8R)<str>')
+    parser.add_argument('--nameModel', metavar='', type=str, default="unet",
+                        help='Name of training model.(unet)<str>')
+    parser.add_argument('--inputChannel', metavar='', type=int, default=7,
+                        help='Input channel of training dataset.(7)<int>')
+    parser.add_argument('--outputChannel', metavar='', type=int, default=7,
+                        help='Output channel of training dataset.(7)<int>')
+    parser.add_argument('--resizeFactor', metavar='', type=int, default=1,
+                        help='Resizing factor of training dataset.(1)<int>')
+
+
+
+    args = parser.parse_args()
+    name_dataset = args.nameDataset
+    name_model = args.nameModel
+    input_chan = args.inputChannel
+    output_chan = args.outputChannel
+    resize_f = args.resizeFactor
+    create_dataset(name_dataset=name_dataset, name_model = name_model,
+                   input_chan=input_chan, output_chan=output_chan, resize_f=resize_f)
+
+
 
 def maxmin_norm(data):
     MAX = np.amax(data)
@@ -66,52 +96,58 @@ def slice5_A(dataA, name_dataset, n_slice=1, name_tag="", resize_f=1, folderName
         np.save(name2save, img)
     print(str(z)+" images have been saved.")
 
-name_dataset = "sk8R_721"
-n_slice = 7
 
-import os
+def create_dataset(name_dataset='sk8R', name_model = "unet",
+                   input_chan=7, output_chan=7, resize_f=1)
 
-for folder_name in ["train", "test", "trainA", "trainB", "testA", "testB"]:
-    path = "./pytorch-CycleGAN-and-pix2pix/datasets/"+name_dataset+"/"+folder_name+"/"
-    if not os.path.exists(path):
-        os.makedirs(path)
+    for folder_name in ["train", "test", "trainA", "trainB", "testA", "testB"]:
+        path = "./pytorch-CycleGAN-and-pix2pix/datasets/"+name_dataset+"/"+folder_name+"/"
+        if not os.path.exists(path):
+            os.makedirs(path)
 
-list_ori = glob.glob("./data/"+name_dataset+"/test/*.nii")
-list_ori.sort()
-print("Test:")
-for path_ori in list_ori:
-    filename_ori = os.path.basename(path_ori)[:]
-    filename_ori = filename_ori[:filename_ori.find(".")]
-    print(filename_ori)
-    data_ori = maxmin_norm(nib.load(path_ori).get_fdata())
-    slice5_A(dataA=data_ori, name_dataset=name_dataset, n_slice=n_slice,
-             name_tag=filename_ori, resize_f = 1, folderName='test')
-    print("------------------------------------------------------------------------")
+    if name_model == 'cGAN':
+        sliceUsed = slice5_AB
+    if name_model == 'unet':
+        sliceUsed = slice5_A
 
-list_ori = glob.glob("./data/"+name_dataset+"/pure/*.nii")
-list_ori.sort()
-print("Pure:")
-for path_ori in list_ori:
-    filename_ori = os.path.basename(path_ori)[:]
-    filename_ori = filename_ori[:filename_ori.find(".")]
-    print(filename_ori)
-    data_ori = maxmin_norm(nib.load(path_ori).get_fdata())
-    slice5_A(dataA=data_ori, name_dataset=name_dataset, n_slice=1, 
-             name_tag=filename_ori, resize_f = 1, folderName='trainA')
-    print("------------------------------------------------------------------------")
+    list_ori = glob.glob("./data/"+name_dataset+"/test/*.nii")
+    list_ori.sort()
+    print("Test:")
+    for path_ori in list_ori:
+        filename_ori = os.path.basename(path_ori)[:]
+        filename_ori = filename_ori[:filename_ori.find(".")]
+        print(filename_ori)
+        data_ori = maxmin_norm(nib.load(path_ori).get_fdata())
+        sliceUsed(dataA=data_ori, name_dataset=name_dataset, n_slice=input_chan,
+                  name_tag=filename_ori, resize_f = resize_f, folderName='test')
+        print("------------------------------------------------------------------------")
 
-list_ori = glob.glob("./data/"+name_dataset+"/blur/*.nii")
-list_ori.sort()
-print("Blur:")
-for path_ori in list_ori:
-    filename_ori = os.path.basename(path_ori)[:]
-    filename_ori = filename_ori[:filename_ori.find(".")]
-    print(filename_ori)
-    data_ori = maxmin_norm(nib.load(path_ori).get_fdata())
-    slice5_A(dataA=data_ori, name_dataset=name_dataset, n_slice=n_slice,
-             name_tag=filename_ori, resize_f = 1, folderName='trainB')
-    print("------------------------------------------------------------------------")
+    list_ori = glob.glob("./data/"+name_dataset+"/pure/*.nii")
+    list_ori.sort()
+    print("Pure:")
+    for path_ori in list_ori:
+        filename_ori = os.path.basename(path_ori)[:]
+        filename_ori = filename_ori[:filename_ori.find(".")]
+        print(filename_ori)
+        data_ori = maxmin_norm(nib.load(path_ori).get_fdata())
+        slice5_A(dataA=data_ori, name_dataset=name_dataset, n_slice=input_chan, 
+                 name_tag=filename_ori, resize_f = resize_f, folderName='trainA')
+        print("------------------------------------------------------------------------")
 
+    list_ori = glob.glob("./data/"+name_dataset+"/blur/*.nii")
+    list_ori.sort()
+    print("Blur:")
+    for path_ori in list_ori:
+        filename_ori = os.path.basename(path_ori)[:]
+        filename_ori = filename_ori[:filename_ori.find(".")]
+        print(filename_ori)
+        data_ori = maxmin_norm(nib.load(path_ori).get_fdata())
+        slice5_A(dataA=data_ori, name_dataset=name_dataset, n_slice=output_chan,
+                 name_tag=filename_ori, resize_f = resize_f, folderName='trainB')
+        print("------------------------------------------------------------------------")
+
+if __name__ == "__main__":
+    main()
 
 
 # list_ori = glob.glob("./data/"+name_dataset+"/pure/*.nii")

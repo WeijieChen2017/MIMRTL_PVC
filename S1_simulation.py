@@ -17,7 +17,7 @@ def main():
         epilog="""All's well that ends well.""")
 
     parser.add_argument('--nameDataset', metavar='', type=str, default="sk8R",
-                        help='Name for the dataset needed to be reverse.(2dEnhancedSk8)<str>')
+                        help='Name for the dataset needed to be reverse.(sk8R)<str>')
     parser.add_argument('--fwhmHub', metavar='', type=str, default="8",
                         help='Blur kernels for sythesizing.(8)<str>')
     parser.add_argument('--gauHub', metavar='', type=str, default="1e-3, 5e-3",
@@ -155,3 +155,5 @@ def sythesize_data(name_dataset='sk8R', fwhm_hub=[8],
 
 if __name__ == "__main__":
     main()
+
+
