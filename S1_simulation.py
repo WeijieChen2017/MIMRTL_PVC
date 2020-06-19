@@ -80,7 +80,7 @@ def nib_smooth(file_mri, data, fwhm, tag, save_path):
     smoothed_file = nibabel.Nifti1Image(smoothed_data, file_mri.affine, file_mri.header)
 #     print(np.amax(smoothed_file.get_fdata()))
     nibabel.save(smoothed_file, save_path+"fwhm_"+str(fwhm)+"_"+tag+".nii")
-    print("fwhm_"+str(idx_fwhm)+"_"+tag+".nii")
+    print("fwhm_"+str(fwhm)+"_"+tag+".nii")
 
 def sythesize_data(name_dataset='sk8R', fwhm_hub=[8], 
                    gau_sigma_hub=[], poi_sigma_hub=[], flag_Radon=False, theta=[]):
