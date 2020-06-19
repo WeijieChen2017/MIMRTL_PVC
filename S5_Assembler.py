@@ -38,7 +38,7 @@ def main():
                      output_chan=output_chan, resize_f=resize_f)
 
 
-def assemble_results(name_dataset="sk8R", data_folder="pMix", output_chan=7, resize_f=1)
+def assemble_results(name_dataset="sk8R", data_folder="pMix", output_chan=7, resize_f=1):
     # test_folder = "testB"
 
     list_ori = glob.glob("./data/"+data_folder+"/test/*.nii")
