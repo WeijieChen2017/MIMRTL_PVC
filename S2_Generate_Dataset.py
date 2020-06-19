@@ -98,7 +98,7 @@ def slice5_A(dataA, name_dataset, n_slice=1, name_tag="", resize_f=1, folderName
 
 
 def create_dataset(name_dataset='sk8R', name_model = "unet",
-                   input_chan=7, output_chan=7, resize_f=1)
+                   input_chan=7, output_chan=7, resize_f=1):
 
     for folder_name in ["train", "test", "trainA", "trainB", "testA", "testB"]:
         path = "./pytorch-CycleGAN-and-pix2pix/datasets/"+name_dataset+"/"+folder_name+"/"
