@@ -107,7 +107,8 @@ def sythesize_data(name_dataset='sk8R', fwhm_hub=[8],
         file_name = os.path.basename(path_ori)
     #     nibabel.save(file_mri, pure_path+file_name)
         print(data_mri.shape)
-
+        print("Fwhm hub: ", fwhm_hub)
+        
         for idx_fwhm in fwhm_hub:
             tag = file_name[:-4]+""
             nib_smooth(file_mri, data_mri, fwhm=idx_fwhm, tag=tag, save_path=blur_path)
