@@ -18,7 +18,7 @@ def main():
         description='''This is a beta script for Partial Volume Correction in PET/MRI system. ''',
         epilog="""All's well that ends well.""")
 
-    parser.add_argument('--nameDataset', metavar='', type=str, default="2dEnhancedSk8",
+    parser.add_argument('--nameDataset', metavar='', type=str, default="sk8R",
                         help='Name for the dataset needed to be reverse.(2dEnhancedSk8)<str>')
 
     args = parser.parse_args()
