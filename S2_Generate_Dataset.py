@@ -9,9 +9,6 @@ from scipy.ndimage import zoom
 
 from PIL import Image
 
-def debug(variable):
-    print(variable, '=', repr(eval(variable)))
-
 def main():
     parser = argparse.ArgumentParser(
         description='''This is a beta script for Partial Volume Correction in PET/MRI system. ''',
@@ -37,12 +34,12 @@ def main():
     output_chan = args.outputChannel
     resize_f = args.resizeFactor
 
-    debug(name_dataset)
-    debug(name_model)
-    debug(input_chan)
-    debug(output_chan)
-    debug(resize_f)
-
+    print(f"{name_dataset=}")
+    print(f"{name_model=}")
+    print(f"{input_chan=}")
+    print(f"{output_chan=}")
+    print(f"{resize_f=}")
+        
     create_dataset(name_dataset=name_dataset, name_model = name_model,
                    input_chan=input_chan, output_chan=output_chan, resize_f=resize_f)
 
