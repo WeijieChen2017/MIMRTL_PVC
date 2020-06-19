@@ -34,12 +34,12 @@ def main():
     output_chan = args.outputChannel
     resize_f = args.resizeFactor
 
-    print(f"{name_dataset=}")
-    print(f"{name_model=}")
-    print(f"{input_chan=}")
-    print(f"{output_chan=}")
-    print(f"{resize_f=}")
-        
+    print("name_dataset=", name_dataset)
+    print("name_model=", name_model)
+    print("input_chan=", input_chan)
+    print("output_chan=", output_chan)
+    print("resize_f=", resize_f)
+
     create_dataset(name_dataset=name_dataset, name_model = name_model,
                    input_chan=input_chan, output_chan=output_chan, resize_f=resize_f)
 
