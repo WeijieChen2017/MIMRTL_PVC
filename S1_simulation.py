@@ -75,7 +75,7 @@ def maxmin_norm(data):
 
 def nib_smooth(file_mri, data, fwhm, tag, save_path):
     nii_file = nibabel.Nifti1Image(data, file_mri.affine, file_mri.header)
-    smoothed = processing.smooth_image(nii_file, fwhm=idx_fwhm, mode='nearest')
+    smoothed = processing.smooth_image(nii_file, fwhm=fwhm, mode='nearest')
     smoothed_data = maxmin_norm(np.asanyarray(smoothed.dataobj))
     smoothed_file = nibabel.Nifti1Image(smoothed_data, file_mri.affine, file_mri.header)
 #     print(np.amax(smoothed_file.get_fdata()))
@@ -107,8 +107,7 @@ def sythesize_data(name_dataset='sk8R', fwhm_hub=[8],
         file_name = os.path.basename(path_ori)
     #     nibabel.save(file_mri, pure_path+file_name)
         print(data_mri.shape)
-        print("Fwhm hub: ", fwhm_hub)
-        
+
         for idx_fwhm in fwhm_hub:
             tag = file_name[:-4]+""
             nib_smooth(file_mri, data_mri, fwhm=idx_fwhm, tag=tag, save_path=blur_path)
