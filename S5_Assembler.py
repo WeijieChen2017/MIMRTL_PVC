@@ -25,7 +25,7 @@ def main():
 
     args = parser.parse_args()
     name_dataset = args.nameDataset
-    data_folder = args.nameModel
+    data_folder = args.dataFolder
     output_chan = args.outputChannel
     resize_f = args.resizeFactor
 
