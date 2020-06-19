@@ -61,8 +61,9 @@ def main():
     print("Poi noise: ", poi_sigma_hub)
     print("Radon: ", flag_Radon)
 
-    # sythesize_data(name_dataset='sk8R', fwhm_hub=[8], 
-    #                    gau_sigma_hub=[], poi_sigma_hub=[], flag_Radon=False, theta=[])
+    sythesize_data(name_dataset=name_dataset, fwhm_hub=fwhm_hub,
+                   gau_sigma_hub=gau_sigma_hub, poi_sigma_hub=poi_sigma_hub,
+                flag_Radon=flag_Radon, theta=theta)
 
 
 def maxmin_norm(data):
