@@ -24,6 +24,8 @@ def main():
                         help='Output channel of training dataset.(7)<int>')
     parser.add_argument('--resizeFactor', metavar='', type=int, default=1,
                         help='Resizing factor of training dataset.(1)<int>')
+    parser.add_argument('--norm', metavar='', type=str, default="maxmin",
+                        help='Normalization for training.(maxmin)<std>')
 
 
 
@@ -33,15 +35,18 @@ def main():
     input_chan = args.inputChannel
     output_chan = args.outputChannel
     resize_f = args.resizeFactor
+    norm = args.norm
 
     print("name_dataset=", name_dataset)
     print("name_model=", name_model)
     print("input_chan=", input_chan)
     print("output_chan=", output_chan)
     print("resize_f=", resize_f)
+    print("normalization=", norm)
 
     create_dataset(name_dataset=name_dataset, name_model = name_model,
-                   input_chan=input_chan, output_chan=output_chan, resize_f=resize_f)
+                   input_chan=input_chan, output_chan=output_chan, resize_f=resize_f,
+                   norm=norm)
 
 
 
@@ -50,6 +55,11 @@ def maxmin_norm(data):
     MIN = np.amin(data)
     data = (data - MIN)/(MAX-MIN)
     return data
+
+def z_norm(data)
+    MEAN = np.mean(data)
+    STD = np.std(data)
+    return (data - MEAN) / STD
 
 def create_index(dataA, n_slice, zeroPadding=False):
     h, w, z = dataA.shape
@@ -105,7 +115,7 @@ def slice5_A(dataA, name_dataset, n_slice=1, name_tag="", resize_f=1, folderName
 
 
 def create_dataset(name_dataset='sk8R', name_model = "unet",
-                   input_chan=7, output_chan=7, resize_f=1):
+                   input_chan=7, output_chan=7, resize_f=1, norm="maxmin"):
 
     for folder_name in ["train", "test", "trainA", "trainB", "testA", "testB"]:
         path = "./pytorch-CycleGAN-and-pix2pix/datasets/"+name_dataset+"/"+folder_name+"/"
@@ -117,6 +127,11 @@ def create_dataset(name_dataset='sk8R', name_model = "unet",
     if name_model == 'unet':
         sliceUsed = slice5_A
 
+    if norm == "maxmin":
+        normUsed = maxmin_norm
+    if norm == 'znorm':
+        normUsed = z_norm
+
     list_ori = glob.glob("./data/"+name_dataset+"/test/*.nii")
     list_ori.sort()
     print("Test:")
@@ -124,7 +139,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet",
         filename_ori = os.path.basename(path_ori)[:]
         filename_ori = filename_ori[:filename_ori.find(".")]
         print(filename_ori)
-        data_ori = maxmin_norm(nib.load(path_ori).get_fdata())
+        data_ori = normUsed(nib.load(path_ori).get_fdata())
         sliceUsed(dataA=data_ori, name_dataset=name_dataset, n_slice=input_chan,
                   name_tag=filename_ori, resize_f = resize_f, folderName='test')
         print("------------------------------------------------------------------------")
@@ -136,7 +151,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet",
         filename_ori = os.path.basename(path_ori)[:]
         filename_ori = filename_ori[:filename_ori.find(".")]
         print(filename_ori)
-        data_ori = maxmin_norm(nib.load(path_ori).get_fdata())
+        data_ori = normUsed(nib.load(path_ori).get_fdata())
         slice5_A(dataA=data_ori, name_dataset=name_dataset, n_slice=input_chan, 
                  name_tag=filename_ori, resize_f = resize_f, folderName='trainA')
         print("------------------------------------------------------------------------")
@@ -148,7 +163,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet",
         filename_ori = os.path.basename(path_ori)[:]
         filename_ori = filename_ori[:filename_ori.find(".")]
         print(filename_ori)
-        data_ori = maxmin_norm(nib.load(path_ori).get_fdata())
+        data_ori = normUsed(nib.load(path_ori).get_fdata())
         slice5_A(dataA=data_ori, name_dataset=name_dataset, n_slice=output_chan,
                  name_tag=filename_ori, resize_f = resize_f, folderName='trainB')
         print("------------------------------------------------------------------------")
