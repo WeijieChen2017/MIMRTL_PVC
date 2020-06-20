@@ -56,7 +56,7 @@ def maxmin_norm(data):
     data = (data - MIN)/(MAX-MIN)
     return data
 
-def z_norm(data)
+def z_norm(data):
     MEAN = np.mean(data)
     STD = np.std(data)
     return (data - MEAN) / STD
