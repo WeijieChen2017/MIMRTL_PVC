@@ -59,7 +59,7 @@ class AlignedDataset(BaseDataset):
         AB_path = self.AB_paths[index]
         print(AB_path)
         print("----------------")
-        AB = np.load(AB_path)
+        AB = np.load(AB_path, allow_pickle=True)
         # print(AB.shape)
         # this code runs
         # split AB
