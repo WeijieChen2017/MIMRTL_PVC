@@ -21,8 +21,9 @@ def main():
     command += " --input_nc "+"7"
     command += " --output_nc "+"7"
     command += " --netG "+"unet_512"
-    command += " --direction "+"BtoA"
+    command += " --direction "+"AtoB"
     command += " --norm batch"
+    command += " --no_dropout"
 
     print(command)
     os.chdir("pytorch-CycleGAN-and-pix2pix")
