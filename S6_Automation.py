@@ -15,12 +15,12 @@ def main():
 
     for name in ["uniform"]:#, "p2", "p3", "pMix"
         command_1 = "python S1_simulation.py --nameDataset " + name
-        command_1 += " uniform --fwhmHub 5,6,7,8,9,10,11 --gauHub 0 --poiHub 0"
+        command_1 += " --fwhmHub 5,6,7,8,9,10,11 --gauHub 0 --poiHub 0"
         print(command_1)
         os.system(command_1)
 
         command_2 = "python S2_Generate_Dataset.py --nameDataset "+name
-        command_2 += " uniform --outputChannel 1"
+        command_2 += " --outputChannel 1"
         print(command_2)
         os.system(command_2)
 
