@@ -13,7 +13,7 @@ def main():
 
     args = parser.parse_args()
 
-    for name in ["p18"]:#, "p2", "p3", "pMix"
+    for name in ["uniform"]:#, "p2", "p3", "pMix"
         command_1 = "python S3_train.py --nameDataset "+name
         print(command_1)
         os.system(command_1)
