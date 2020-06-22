@@ -127,8 +127,8 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
     h = h*resize_f
     w = w*resize_f
     
-    imgA = np.zeros((chanA, h, w*2))
-    imgB = np.zeros((chanB, h, w*2))
+    imgA = np.zeros((chanA, h, w))
+    imgB = np.zeros((chanB, h, w))
     indexA = create_index(dataA, chanA)
     indexB = create_index(dataB, chanB)
 
@@ -137,9 +137,9 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
     for idx_z in range(z):
 
         for idx_a in range(chanA):
-            imgA[idx_a, :, :w] = zoom(dataA[:, :, int(indexA[idx_z, idx_a])], zoom=resize_f)
+            imgA[idx_a, :, :] = zoom(dataA[:, :, int(indexA[idx_z, idx_a])], zoom=resize_f)
         for idx_b in range(chanB):
-            imgB[idx_b, :, :w] = zoom(dataB[:, :, int(indexB[idx_z, idx_b])], zoom=resize_f)
+            imgB[idx_b, :, :] = zoom(dataB[:, :, int(indexB[idx_z, idx_b])], zoom=resize_f)
 
         img = [imgA, imgB]
 

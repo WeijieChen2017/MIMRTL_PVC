@@ -22,7 +22,7 @@ def main():
     command += " --n_epochs "+"30"
     command += " --n_epochs_decay "+"30"
     command += " --input_nc "+"7"
-    command += " --output_nc "+"7"
+    command += " --output_nc "+"1"
     command += " --netG "+"unet_512"
     command += " --direction "+"AtoB"
     command += " --norm "+"batch"
