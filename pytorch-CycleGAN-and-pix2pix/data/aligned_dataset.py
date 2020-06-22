@@ -60,11 +60,12 @@ class AlignedDataset(BaseDataset):
         print(AB_path)
         print("----------------")
         AB = np.load(AB_path, allow_pickle=True)
+        print(AB[0].shape, AB[1].shape)
         # print(AB.shape)
         # this code runs
         # split AB
-        c, h, w = AB.shape
-        w = w // 2
+        # c, h, w = AB.shape
+        # w = w // 2
         # data_A = AB[c//2, :, :w]
         # data_B = AB[:, :, w:]
             
