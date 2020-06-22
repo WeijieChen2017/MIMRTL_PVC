@@ -198,30 +198,30 @@ def create_dataset(name_dataset='sk8R', name_model = "unet",
 
 
 
-list_ori = glob.glob("./data/"+name_dataset+"/pure/*.nii")
-list_ori.sort()
-for path_ori in list_ori:
-    print("TrainA:")
-    filename_ori = os.path.basename(path_ori)[:]
-    filename_ori = filename_ori[:filename_ori.find(".")]
-    print(filename_ori)
-    data_ori = normUsed(nib.load(path_ori).get_fdata())
-    
-    list_sim = glob.glob("./data/"+name_dataset+"/blur/*"+filename_ori+"*.nii")
-    list_sim.sort()
-    
-    for path_sim in list_sim:
-        print("Pairs")
-        filename_sim = os.path.basename(path_sim)[:]
-        filename_sim = filename_sim[:filename_sim.find(".")]
-        print("A:", filename_sim)
-        print("B:", filename_ori)
-                
-        data_sim = normUsed(nib.load(path_sim).get_fdata())
-        sliceUsed(dataA=data_sim, dataB=data_ori, chanA=7, chanB=1,
-                  name_dataset=name_dataset, name_tag=filename_sim, resize_f=1)
+    list_ori = glob.glob("./data/"+name_dataset+"/pure/*.nii")
+    list_ori.sort()
+    for path_ori in list_ori:
+        print("TrainA:")
+        filename_ori = os.path.basename(path_ori)[:]
+        filename_ori = filename_ori[:filename_ori.find(".")]
+        print(filename_ori)
+        data_ori = normUsed(nib.load(path_ori).get_fdata())
         
-    print("------------------------------------------------------------------------")
+        list_sim = glob.glob("./data/"+name_dataset+"/blur/*"+filename_ori+"*.nii")
+        list_sim.sort()
+        
+        for path_sim in list_sim:
+            print("Pairs")
+            filename_sim = os.path.basename(path_sim)[:]
+            filename_sim = filename_sim[:filename_sim.find(".")]
+            print("A:", filename_sim)
+            print("B:", filename_ori)
+                    
+            data_sim = normUsed(nib.load(path_sim).get_fdata())
+            sliceUsed(dataA=data_sim, dataB=data_ori, chanA=7, chanB=1,
+                      name_dataset=name_dataset, name_tag=filename_sim, resize_f=1)
+            
+        print("------------------------------------------------------------------------")
 
 if __name__ == "__main__":
     main()
