@@ -65,14 +65,14 @@ class AlignedDataset(BaseDataset):
         # split AB
         c, h, w = AB.shape
         w = w // 2
-        data_A = AB[c//2, :, :w]
-        data_B = AB[:, :, w:]
+        # data_A = AB[c//2, :, :w]
+        # data_B = AB[:, :, w:]
             
         # A = torch.from_numpy(data_A).float().unsqueeze(0)
         # B = torch.from_numpy(data_B).float().unsqueeze(0)
 
-        A = torch.from_numpy(data_A).float()
-        B = torch.from_numpy(data_B).float()
+        A = torch.from_numpy(AB[0]).float()
+        B = torch.from_numpy(AB[1]).float()
         # print(A.size(), B.size())
         # normalization has been done during creating dataset
 
