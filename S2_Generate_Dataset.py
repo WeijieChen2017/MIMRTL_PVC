@@ -114,6 +114,33 @@ def slice5_A(dataA, name_dataset, n_slice=1, name_tag="", resize_f=1, folderName
     print(str(z)+" images have been saved.")
 
 
+def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
+             name_tag="", resize_f=1, folderName='test'):
+    # shape supposed to be 512*512*284 by default
+    assert dataA.shape == dataB.shape, ("DataA should share the same shape with DataB.")
+    path2save = "./pytorch-CycleGAN-and-pix2pix/datasets/"+name_dataset+"/train/"
+    h, w, z = dataA.shape
+    h = h*resize_f
+    w = w*resize_f
+    
+    imgA = np.zeros((chanA, h, w*2))
+    imgB = np.zeros((chanB, h, w*2))
+    indexA = create_index(dataA, chanA)
+    indexB = create_index(dataB, chanB)
+    for idx_z in range(z):
+
+        for idx_a in range(chanA):
+            imgA[idx_a, :, :w] = zoom(dataA[:, :, int(indexA[idx_z, idx_a])], zoom=resize_f)
+        for idx_b in range(chanB):
+            imgB[idx_b, :, :w] = zoom(dataB[:, :, int(indexB[idx_z, idx_b])], zoom=resize_f)
+
+        img = [imgA, imgB]
+
+        name2save = path2save+name_tag+"_"+str(idx_z)+".npy"
+        np.save(name2save, img)
+    print(str(z)+" images have been saved.")
+
+
 def create_dataset(name_dataset='sk8R', name_model = "unet",
                    input_chan=7, output_chan=7, resize_f=1, norm="maxmin"):
 
