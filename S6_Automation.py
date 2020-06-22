@@ -16,7 +16,7 @@ def main():
     for powerFactor in [0.5, 1, 2, 3]:#, "p2", "p3", "pMix"
 
         if powerFactor < 1:
-            powerFactor_str = "0"+str(powerFactor * 10)
+            powerFactor_str = "0"+str(int(powerFactor * 10))
         else:
             powerFactor_str = str(powerFactor)
         name = "k8p"+powerFactor_str
