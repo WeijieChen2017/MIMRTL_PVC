@@ -20,10 +20,13 @@ def main():
 
     parser.add_argument('--nameDataset', metavar='', type=str, default="sk8R",
                         help='Name for the dataset needed to be reverse.(2dEnhancedSk8)<str>')
+    parser.add_argument('--powerFactor', metavar='', type=float, default=1,
+                        help='Contrast enhancing factor.(1)<float>')
 
     args = parser.parse_args()
     name_dataset = args.nameDataset
-    reverse_dataset(name_dataset)
+    power_factor = args.powerFactor
+    reverse_dataset(name_dataset, powerFactor)
 
 def maxmin_norm(data):
     MAX = np.amax(data)
@@ -31,7 +34,7 @@ def maxmin_norm(data):
     data = (data - MIN)/(MAX-MIN)
     return data
 
-def reverse_dataset(name_dataset):
+def reverse_dataset(name_dataset, powerFactor):
     for folder_name in ["trainA", "trainB", "testA", "testB"]:
         path = "./pytorch-CycleGAN-and-pix2pix/datasets/"+name_dataset+"/"+folder_name+"/"
         if not os.path.exists(path):
@@ -72,14 +75,14 @@ def reverse_dataset(name_dataset):
         norm_mri[norm_mri == 1] = 0
 
         # enhance
-        power_hub = [0.5,1,2,3]
-        for power in power_hub:
-            norm_mri_p = norm_mri ** power
-            file_inv = nib.Nifti1Image(norm_mri_p, nii_file.affine, nii_file.header)
-            save_name = pure_path+"/"+nii_name+"_inv_mask_p"+str(power)+".nii"
-            nib.save(file_inv, save_name)
+        # power_hub = [0.5,1,2,3]
+        # for power in power_hub:
+        norm_mri_p = norm_mri ** powerFactor
+        file_inv = nib.Nifti1Image(norm_mri_p, nii_file.affine, nii_file.header)
+        save_name = pure_path+"/"+nii_name+"_inv_mask_p"+str(powerFactor)+".nii"
+        nib.save(file_inv, save_name)
             
-            print(save_name)
+        print(save_name)
         # norm_mri[otsu_data>0] = 255-norm_mri[otsu_data>0]
         
         # cut_th_0 = 100
