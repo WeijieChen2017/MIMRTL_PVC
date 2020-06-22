@@ -59,20 +59,25 @@ class AlignedDataset(BaseDataset):
         AB_path = self.AB_paths[index]
         # print(AB_path)
         # print("----------------")
-        AB = np.load(AB_path, pickle=True)
-        # print(AB.shape)
-        # this code runs
-        # split AB
-        c, h, w = AB.shape
-        w = w // 2
-        # data_A = AB[c//2, :, :w]
-        # data_B = AB[:, :, w:]
-            
-        # A = torch.from_numpy(data_A).float().unsqueeze(0)
-        # B = torch.from_numpy(data_B).float().unsqueeze(0)
+        try:
+            AB = np.load(AB_path)
+            # print(AB.shape)
+            # this code runs
+            # split AB
+            c, h, w = AB.shape
+            w = w // 2
+            # data_A = AB[c//2, :, :w]
+            # data_B = AB[:, :, w:]
+                
+            # A = torch.from_numpy(data_A).float().unsqueeze(0)
+            # B = torch.from_numpy(data_B).float().unsqueeze(0)
 
-        A = torch.from_numpy(AB[0]).float()
-        B = torch.from_numpy(AB[1]).float()
+            A = torch.from_numpy(AB[0]).float()
+            B = torch.from_numpy(AB[1]).float()
+        except Exception as e:
+            return None
+            # raise e
+        
         # print(A.size(), B.size())
         # normalization has been done during creating dataset
 
