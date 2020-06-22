@@ -14,17 +14,27 @@ def main():
     args = parser.parse_args()
 
     for name in ["uniform"]:#, "p2", "p3", "pMix"
-        command_1 = "python S3_train.py --nameDataset "+name
+        command_1 = "python S1_simulation.py --nameDataset " + name
+        command_1 += " uniform --fwhmHub 5,6,7,8,9,10,11 --gauHub 0 --poiHub 0"
         print(command_1)
         os.system(command_1)
 
-        command_2 = "python S4_test.py --nameDataset "+name
+        command_2 = "python S2_Generate_Dataset.py --nameDataset "+name
+        command_2 += " uniform --outputChannel 1"
         print(command_2)
         os.system(command_2)
 
-        command_3 = "python S5_Assembler.py --nameDataset "+name
+        command_3 = "python S3_train.py --nameDataset "+name
         print(command_3)
         os.system(command_3)
+
+        command_4 = "python S4_test.py --nameDataset "+name
+        print(command_4)
+        os.system(command_4)
+
+        command_5 = "python S5_Assembler.py --nameDataset "+name
+        print(command_5)
+        os.system(command_5)
         
     # command_0 = "pytorch-CycleGAN-and-pix2pix"
     # print("------------------------")

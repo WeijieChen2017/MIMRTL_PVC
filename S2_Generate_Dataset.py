@@ -175,7 +175,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
         filename_ori = filename_ori[:filename_ori.find(".")]
         print(filename_ori)
         data_ori = normUsed(nib.load(path_ori).get_fdata())
-        sliceUsed(dataA=data_ori, name_dataset=name_dataset, n_slice=input_chan,
+        slice5_A(dataA=data_ori, name_dataset=name_dataset, n_slice=input_chan,
                   name_tag=filename_ori, resize_f = resize_f, folderName='test',
                   save_flag=save_flag)
         print("------------------------------------------------------------------------")
