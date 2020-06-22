@@ -26,7 +26,7 @@ def main():
     args = parser.parse_args()
     name_dataset = args.nameDataset
     power_factor = args.powerFactor
-    reverse_dataset(name_dataset, powerFactor)
+    reverse_dataset(name_dataset, power_factor)
 
 def maxmin_norm(data):
     MAX = np.amax(data)
