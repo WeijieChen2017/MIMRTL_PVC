@@ -27,7 +27,7 @@ def main():
         os.system(command_0)
 
         command_1 = "python S1_simulation.py --nameDataset " + name
-        command_1 += " --fwhmHub 5,6,7,8,9,10,11 --gauHub 0 --poiHub 0"
+        command_1 += " --fwhmHub 8 --gauHub 0 --poiHub 0"
         print(command_1)
         os.system(command_1)
 
