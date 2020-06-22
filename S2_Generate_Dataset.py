@@ -25,7 +25,9 @@ def main():
     parser.add_argument('--resizeFactor', metavar='', type=int, default=1,
                         help='Resizing factor of training dataset.(1)<int>')
     parser.add_argument('--norm', metavar='', type=str, default="maxmin",
-                        help='Normalization for training.(maxmin)<std>')
+                        help='Normalization for training.(maxmin)<str>')
+    parser.add_argument('--save', metavar='', type=bool, default=False,
+                        help='Whether to save images.(maxmin)<str>')
 
 
 
@@ -35,6 +37,7 @@ def main():
     input_chan = args.inputChannel
     output_chan = args.outputChannel
     resize_f = args.resizeFactor
+    save_flag = args.save
     norm = args.norm
 
     print("name_dataset=", name_dataset)
@@ -43,10 +46,11 @@ def main():
     print("output_chan=", output_chan)
     print("resize_f=", resize_f)
     print("normalization=", norm)
+    print("save_flag=", save_flag)
 
     create_dataset(name_dataset=name_dataset, name_model = name_model,
                    input_chan=input_chan, output_chan=output_chan, resize_f=resize_f,
-                   norm=norm)
+                   norm=norm, save_flag=save_flag)
 
 
 
@@ -115,7 +119,7 @@ def slice5_A(dataA, name_dataset, n_slice=1, name_tag="", resize_f=1, folderName
 
 
 def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
-             name_tag="", resize_f=1, folderName='test'):
+             name_tag="", resize_f=1, folderName='test', save_flag=False):
     # shape supposed to be 512*512*284 by default
     assert dataA.shape == dataB.shape, ("DataA should share the same shape with DataB.")
     path2save = "./pytorch-CycleGAN-and-pix2pix/datasets/"+name_dataset+"/train/"
@@ -127,6 +131,9 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
     imgB = np.zeros((chanB, h, w*2))
     indexA = create_index(dataA, chanA)
     indexB = create_index(dataB, chanB)
+
+    # print(indexA)
+    # print(indexB)
     for idx_z in range(z):
 
         for idx_a in range(chanA):
@@ -137,12 +144,13 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
         img = [imgA, imgB]
 
         name2save = path2save+name_tag+"_"+str(idx_z)+".npy"
-        np.save(name2save, img)
+        if save_flag:
+            np.save(name2save, img)
     print(str(z)+" images have been saved.")
 
 
-def create_dataset(name_dataset='sk8R', name_model = "unet",
-                   input_chan=7, output_chan=7, resize_f=1, norm="maxmin"):
+def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, output_chan=7,
+                   resize_f=1, norm="maxmin", save_flag=False):
 
     for folder_name in ["train", "test", "trainA", "trainB", "testA", "testB"]:
         path = "./pytorch-CycleGAN-and-pix2pix/datasets/"+name_dataset+"/"+folder_name+"/"
@@ -168,7 +176,8 @@ def create_dataset(name_dataset='sk8R', name_model = "unet",
         print(filename_ori)
         data_ori = normUsed(nib.load(path_ori).get_fdata())
         sliceUsed(dataA=data_ori, name_dataset=name_dataset, n_slice=input_chan,
-                  name_tag=filename_ori, resize_f = resize_f, folderName='test')
+                  name_tag=filename_ori, resize_f = resize_f, folderName='test',
+                  save_flag=save_flag)
         print("------------------------------------------------------------------------")
 
     # list_ori = glob.glob("./data/"+name_dataset+"/pure/*.nii")
