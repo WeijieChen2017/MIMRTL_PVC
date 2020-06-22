@@ -19,7 +19,7 @@ def main():
         print(command_1)
         os.system(command_1)
 
-        command_2 = "python S2_generate_Dataset.py --nameDataset "+name
+        command_2 = "python S2_createDataset.py --nameDataset "+name
         command_2 += " --outputChannel 1"
         print(command_2)
         os.system(command_2)
