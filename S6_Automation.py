@@ -42,7 +42,7 @@ def main():
 
         command_4 = "python S4_test.py --nameDataset "+name
         print(command_4)
-        os.system(command_4)
+        # os.system(command_4)
 
         command_5 = "python S5_assembler.py --nameDataset "+name
         print(command_5)
