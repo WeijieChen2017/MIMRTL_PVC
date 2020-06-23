@@ -15,6 +15,7 @@ def main():
                         help='Whether to only show commands instead of excuting them.(True)<str>')
 
     args = parser.parse_args()
+    print(atgs)
     show_only = args.showOnly
 
     for fwhm in [4,5,6,7,8,9,10,11,12]:#, "p2", "p3", "pMix"
