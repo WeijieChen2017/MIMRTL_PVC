@@ -24,7 +24,7 @@ def main():
                         help='Output channel of training dataset.(7)<int>')
     parser.add_argument('--resizeFactor', metavar='', type=int, default=1,
                         help='Resizing factor of training dataset.(1)<int>')
-    parser.add_argument('--norm', metavar='', type=str, default="maxmin",
+    parser.add_argument('--norm', metavar='', type=str, default="znorm",
                         help='Normalization for training.(maxmin)<str>')
     parser.add_argument('--save', metavar='', type=bool, default=False,
                         help='Whether to save images.(maxmin)<str>')
