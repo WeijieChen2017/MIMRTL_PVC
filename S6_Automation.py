@@ -49,6 +49,9 @@ def main():
         print(command_5)
         # os.system(command_5)
 
+        print("Show only? ",show_only)
+        print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
         if not show_only:
             os.system(command_0)
             os.system(command_1)
