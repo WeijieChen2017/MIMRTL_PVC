@@ -20,13 +20,16 @@ def main():
 
     parser.add_argument('--nameDataset', metavar='', type=str, default="sk8R",
                         help='Name for the dataset needed to be reverse.(2dEnhancedSk8)<str>')
+    parser.add_argument('--mriFolder', metavar='', type=str, default="mri",
+                        help='Name for the dataset needed to be reverse.(2dEnhancedSk8)<str>')
     parser.add_argument('--powerFactor', metavar='', type=float, default=1,
                         help='Contrast enhancing factor.(1)<float>')
 
     args = parser.parse_args()
     name_dataset = args.nameDataset
     power_factor = args.powerFactor
-    reverse_dataset(name_dataset, power_factor)
+    mri_folder = args.mriFolder
+    reverse_dataset(name_dataset, mri_folder, power_factor)
 
 def maxmin_norm(data):
     MAX = np.amax(data)
@@ -34,7 +37,7 @@ def maxmin_norm(data):
     data = (data - MIN)/(MAX-MIN)
     return data
 
-def reverse_dataset(name_dataset, powerFactor):
+def reverse_dataset(name_dataset, mri_folder, powerFactor):
     for folder_name in ["trainA", "trainB", "testA", "testB"]:
         path = "./pytorch-CycleGAN-and-pix2pix/datasets/"+name_dataset+"/"+folder_name+"/"
         if not os.path.exists(path):
@@ -52,7 +55,7 @@ def reverse_dataset(name_dataset, powerFactor):
     if not os.path.exists(test_path):
         os.makedirs(test_path)
 
-    mri_path = "./data/"+name_dataset+"/mri/"
+    mri_path = "./data/"+mri_folder+"/"
     if not os.path.exists(mri_path):
         os.makedirs(mri_path)
 

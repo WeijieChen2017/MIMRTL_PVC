@@ -17,7 +17,7 @@ def main():
         epilog="""All's well that ends well.""")
 
     parser.add_argument('--nameDataset', metavar='', type=str, default="sk8R",
-                        help='Name for the dataset needed to be reverse.(sk8R)<str>')
+                        help='Name for the dataset needed to be blur.(sk8R)<str>') 
     parser.add_argument('--fwhmHub', metavar='', type=str, default="8",
                         help='Blur kernels for sythesizing.(8)<str>')
     parser.add_argument('--gauHub', metavar='', type=str, default="1e-3, 5e-3",
@@ -63,7 +63,7 @@ def main():
 
     sythesize_data(name_dataset=name_dataset, fwhm_hub=fwhm_hub,
                    gau_sigma_hub=gau_sigma_hub, poi_sigma_hub=poi_sigma_hub,
-                flag_Radon=flag_Radon, theta=theta)
+                   flag_Radon=flag_Radon, theta=theta)
 
 
 def maxmin_norm(data):
@@ -82,7 +82,7 @@ def nib_smooth(file_mri, data, fwhm, tag, save_path):
     nibabel.save(smoothed_file, save_path+"fwhm_"+str(fwhm)+"_"+tag+".nii")
     print("fwhm_"+str(fwhm)+"_"+tag+".nii")
 
-def sythesize_data(name_dataset='sk8R', fwhm_hub=[8], 
+def sythesize_data(name_dataset='sk8R', fwhm_hub=[8],
                    gau_sigma_hub=[], poi_sigma_hub=[], flag_Radon=False, theta=[]):
 
     for folder_name in ["trainA", "trainB", "testA", "testB"]:
