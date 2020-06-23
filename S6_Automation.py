@@ -11,7 +11,11 @@ def main():
     parser.add_argument('--lr', metavar='', type=float, default=0.0002,
                         help='Learning rate(0.0002)<float>')
 
+    parser.add_argument('--showOnly', metavar='', type=bool, default=True,
+                        help='Whether to only show commands instead of excuting them.(True)<str>')
+
     args = parser.parse_args()
+    show_only = args.showOnly
 
     for fwhm in [4,5,6,7,8,9,10,11,12]:#, "p2", "p3", "pMix"
 
@@ -20,29 +24,38 @@ def main():
         command_0 = "python S0_reverse.py --nameDataset " + name
         command_0 += " --powerFactor 1"
         print(command_0)
-        os.system(command_0)
+        # os.system(command_0)
 
         command_1 = "python S1_simulation.py --nameDataset " + name
         command_1 += " --fwhmHub 8 --gauHub 0 --poiHub 0"
         print(command_1)
-        os.system(command_1)
+        # os.system(command_1)
 
         command_2 = "python S2_createDataset.py --nameDataset "+name
         command_2 += " --outputChannel 1"
         print(command_2)
-        os.system(command_2)
+        # os.system(command_2)
 
         command_3 = "python S3_train.py --nameDataset "+name
         print(command_3)
-        os.system(command_3)
+        # os.system(command_3)
 
         command_4 = "python S4_test.py --nameDataset "+name
         print(command_4)
-        os.system(command_4)
+        # os.system(command_4)
 
         command_5 = "python S5_assembler.py --nameDataset "+name
         print(command_5)
-        os.system(command_5)
+        # os.system(command_5)
+
+        if not show_only:
+            os.system(command_0)
+            os.system(command_1)
+            os.system(command_2)
+            os.system(command_3)
+            os.system(command_4)
+            os.system(command_5)
+
         
     # command_0 = "pytorch-CycleGAN-and-pix2pix"
     # print("------------------------")
