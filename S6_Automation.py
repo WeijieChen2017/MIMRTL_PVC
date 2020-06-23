@@ -11,7 +11,7 @@ def main():
     parser.add_argument('--lr', metavar='', type=float, default=0.0002,
                         help='Learning rate(0.0002)<float>')
 
-    parser.add_argument('--showOnly', metavar='', type=bool, default=True,
+    parser.add_argument('--showOnly', metavar='', type=str, default="True",
                         help='Whether to only show commands instead of excuting them.(True)<str>')
 
     args = parser.parse_args()
@@ -53,7 +53,7 @@ def main():
         print("Show only? ",show_only)
         print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 
-        if not show_only:
+        if show_only != "True":
             os.system(command_0)
             os.system(command_1)
             os.system(command_2)
