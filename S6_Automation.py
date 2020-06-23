@@ -18,12 +18,12 @@ def main():
     print(args)
     show_only = args.showOnly
 
-    for fwhm in [9,10,11,12]:#, "p2", "p3", "pMix"
+    for fwhm in [4,5,6,7,8,9,10,11,12]:#, "p2", "p3", "pMix"
 
         name = "p1k"+str(fwhm)
 
         command_0 = "python S0_reverse.py --nameDataset " + name
-        command_0 += " --powerFactor 1"
+        command_0 += " --powerFactor 0.5"
         print(command_0)
         # os.system(command_0)
 
@@ -50,6 +50,9 @@ def main():
         print(command_5)
         # os.system(command_5)
 
+        command_6 = "rm -r ./pytorch-CycleGAN-and-pix2pix/*/"+name
+        print(command_6)
+
         print("Show only? ",show_only)
         print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 
@@ -60,6 +63,7 @@ def main():
             os.system(command_3)
             os.system(command_4)
             os.system(command_5)
+            os.system(command_6)
 
         
     # command_0 = "pytorch-CycleGAN-and-pix2pix"
