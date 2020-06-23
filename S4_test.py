@@ -13,7 +13,7 @@ def main():
     name_dataset = args.nameDataset
 
     command = "python test.py"
-    command += " --dataroot ./datasets/uniform"
+    command += " --dataroot ./datasets/pMix"
     command += " --name "+name_dataset
     command += " --model "+"test"
     command += " --num_test "+"300"
