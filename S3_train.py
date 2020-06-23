@@ -16,7 +16,7 @@ def main():
     command += " --dataroot ./datasets/"+name_dataset
     command += " --name "+name_dataset
     command += " --model "+"pix2pix"
-    command += " --batch_size "+"16"
+    command += " --batch_size "+"80"
     command += " --gpu_ids "+"0"
     command += " --save_epoch_freq "+"20"
     command += " --n_epochs "+"30"
