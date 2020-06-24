@@ -18,7 +18,7 @@ def main():
     print(args)
     show_only = args.showOnly
 
-    for fwhm in [6,7,8,9,10,11,12]:#, "p2", "p3", "pMix"
+    for fwhm in [10,11,12]:#, "p2", "p3", "pMix"
 
         name = "p5k"+str(fwhm)
 

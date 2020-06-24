@@ -221,7 +221,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
         for path_sim in list_sim:
             print("Pairs")
             filename_sim = os.path.basename(path_sim)[:]
-            filename_sim = filename_sim[:filename_sim.find(".")]
+            filename_sim = filename_sim[:filename_sim.rfind(".")]
             print("A:", filename_sim)
             print("B:", filename_ori)
                     

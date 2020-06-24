@@ -53,6 +53,9 @@ def main():
         command_6 = "rm -r ./pytorch-CycleGAN-and-pix2pix/*/"+name
         print(command_6)
 
+        command_7 = "rm -r ./data/"+name
+        print(command_7)
+
         print("Show only? ",show_only)
         print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 
@@ -64,6 +67,7 @@ def main():
             os.system(command_4)
             os.system(command_5)
             os.system(command_6)
+            os.system(command_7)
 
         
     # command_0 = "pytorch-CycleGAN-and-pix2pix"
