@@ -19,7 +19,7 @@ def main():
     command += " --num_test "+"300"
     command += " --dataset_mode "+"single"
     command += " --input_nc "+"7"
-    command += " --output_nc "+"1"
+    command += " --output_nc "+"7"
     command += " --netG "+"unet_512"
     command += " --direction "+"AtoB"
     command += " --norm batch"
