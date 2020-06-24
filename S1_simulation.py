@@ -24,7 +24,7 @@ def main():
                         help='Gaussian noise level for sythesizing.(1e-3, 5e-3)<str>')
     parser.add_argument('--poiHub', metavar='', type=str, default="1, 5",
                         help='Poisson noise level for sythesizing.(1, 5)<str>')
-    parser.add_argument('--radon', metavar='', type=bool, default=True,
+    parser.add_argument('--radon', metavar='', type=bool, default=False,
                         help='Whether add radon artifacts for sythesizing.(False)<bool>')
     parser.add_argument('--theta', metavar='', type=int, default="112",
                         help='Unit angle for sythesizing.(112)<int>')

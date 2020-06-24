@@ -20,7 +20,7 @@ def main():
 
     for fwhm in [8]:#, "p2", "p3", "pMix"
 
-        name = "p5k"+str(fwhm)+"r"
+        name = "p5k"+str(fwhm)+""
 
         command_0 = "python S0_reverse.py --nameDataset " + name
         command_0 += " --powerFactor 0.5"
