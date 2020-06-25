@@ -22,7 +22,7 @@ def main():
                         help='Name for the dataset needed to be reverse.(2dEnhancedSk8)<str>')
     parser.add_argument('--mriFolder', metavar='', type=str, default="mri",
                         help='Name for the dataset needed to be reverse.(2dEnhancedSk8)<str>')
-    parser.add_argument('--powerFactor', metavar='', type=float, default=0.5,
+    parser.add_argument('--powerFactor', metavar='', type=float, default=1,
                         help='Contrast enhancing factor.(0.5)<float>')
 
     args = parser.parse_args()
