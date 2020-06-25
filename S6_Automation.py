@@ -28,13 +28,13 @@ def main():
         # os.system(command_0)
 
         command_1 = "python S1_simulation.py --nameDataset " + name
-        command_1 += " --fwhmHub "+str(fwhm)
+        command_1 += " --fwhmHub 8"
         command_1 += " --gauHub 0 --poiHub 0"
         print(command_1)
         # os.system(command_1)
 
         command_2 = "python S2_createDataset.py --nameDataset "+name
-        command_2 += " --outputChannel 7"
+        command_2 += " --outputChannel 1"
         print(command_2)
         # os.system(command_2)
 

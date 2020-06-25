@@ -20,7 +20,7 @@ def main():
                         help='Name of training model.(unet)<str>')
     parser.add_argument('--inputChannel', metavar='', type=int, default=7,
                         help='Input channel of training dataset.(7)<int>')
-    parser.add_argument('--outputChannel', metavar='', type=int, default=7,
+    parser.add_argument('--outputChannel', metavar='', type=int, default=1,
                         help='Output channel of training dataset.(7)<int>')
     parser.add_argument('--resizeFactor', metavar='', type=int, default=1,
                         help='Resizing factor of training dataset.(1)<int>')
