@@ -49,6 +49,7 @@ def main():
         print(command_4)
 
         command_5 = "python S5_assembler.py --nameDataset "+name
+        command_5 += " --dataFolder phantom"
         print(command_5)
         # os.system(command_5)
 
