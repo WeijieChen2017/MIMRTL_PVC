@@ -23,7 +23,7 @@ def main():
         if powerFactor <1:
             name = "k8p"+str(int(powerFactor*10))+"v"
         else:
-            name = "k8p"+str(powerFactor)+"v"
+            name = "k8p"+str(powerFactor)+"b8"
 
         command_0 = "python S0_reverse.py --nameDataset " + name
         command_0 += " --powerFactor "+str(powerFactor)
