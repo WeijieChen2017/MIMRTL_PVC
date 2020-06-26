@@ -21,7 +21,7 @@ def main():
     for powerFactor in [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]:#, "p2", "p3", "pMix"
 
         if powerFactor <1:
-            name = "k8p"+str(int(powerFactor*10))+"v"
+            name = "k8p"+str(int(powerFactor*10))+"b8"
         else:
             name = "k8p"+str(powerFactor)+"b8"
 
@@ -47,7 +47,6 @@ def main():
 
         command_4 = "python S4_test.py --nameDataset "+name
         print(command_4)
-        # os.system(command_4)
 
         command_5 = "python S5_assembler.py --nameDataset "+name
         print(command_5)
