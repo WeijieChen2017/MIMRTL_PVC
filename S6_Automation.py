@@ -18,7 +18,7 @@ def main():
     print(args)
     show_only = args.showOnly
 
-    for fwhm in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]:#, "p2", "p3", "pMix"
+    for fwhm in [10,11,12,13,14,15]:#, "p2", "p3", "pMix"
 
         # if powerFactor <1:
         #     name = "k8p"+str(int(powerFactor*10))+"b8"
@@ -51,7 +51,7 @@ def main():
         print(command_4)
 
         command_5 = "python S5_assembler.py --nameDataset "+name
-        command_5 += " --dataFolder phantom"
+        command_5 += " --dataFolder pMix"
         print(command_5)
         # os.system(command_5)
 
