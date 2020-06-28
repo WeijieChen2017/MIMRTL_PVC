@@ -18,14 +18,14 @@ def main():
     print(args)
     show_only = args.showOnly
 
-    for fwhm in [8,9]:#, "p2", "p3", "pMix"
+    for fwhm in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]:#, "p2", "p3", "pMix"
 
         # if powerFactor <1:
         #     name = "k8p"+str(int(powerFactor*10))+"b8"
         # else:
         #     name = "k8p"+str(powerFactor)+"b8"
 
-        name = "p7k"+str(fwhm)+"b8"
+        name = "p7k"+str(fwhm)+"b8_dirty13"
 
         command_0 = "python S0_reverse.py --nameDataset " + name
         command_0 += " --powerFactor 0.7"
