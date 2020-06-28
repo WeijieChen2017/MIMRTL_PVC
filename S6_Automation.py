@@ -18,7 +18,7 @@ def main():
     print(args)
     show_only = args.showOnly
 
-    for fwhm in [10,11,12,13,14,15]:#, "p2", "p3", "pMix"
+    for fwhm in [8,9]:#, "p2", "p3", "pMix"
 
         # if powerFactor <1:
         #     name = "k8p"+str(int(powerFactor*10))+"b8"
