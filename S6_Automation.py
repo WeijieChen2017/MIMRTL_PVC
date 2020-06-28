@@ -18,22 +18,24 @@ def main():
     print(args)
     show_only = args.showOnly
 
-    for fwhm in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]:#, "p2", "p3", "pMix"
+    for powerFactor in [0.25, 0.5, 0.75, 1, 2, 3]
 
-        # if powerFactor <1:
-        #     name = "k8p"+str(int(powerFactor*10))+"b8"
-        # else:
-        #     name = "k8p"+str(powerFactor)+"b8"
+    # for fwhm in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]:#, "p2", "p3", "pMix"
 
-        name = "p7k"+str(fwhm)+"b8_wb"
+        if powerFactor <1:
+            name = "k8p"+str(int(powerFactor*10))+"b8_wb"
+        else:
+            name = "k8p"+str(powerFactor)+"b8_wb"
+
+        # name = "p7k"+str(fwhm)+"b8_wb"
 
         command_0 = "python S0_reverse.py --nameDataset " + name
-        command_0 += " --powerFactor 0.7"
+        command_0 += " --powerFactor "+str(powerFactor)
         print(command_0)
         # os.system(command_0)
 
         command_1 = "python S1_simulation.py --nameDataset " + name
-        command_1 += " --fwhmHub "+str(fwhm)
+        command_1 += " --fwhmHub 8"#+str(fwhm)
         command_1 += " --gauHub 0 --poiHub 0"
         print(command_1)
         # os.system(command_1)

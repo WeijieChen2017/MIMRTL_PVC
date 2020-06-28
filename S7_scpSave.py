@@ -18,53 +18,29 @@ def main():
     print(args)
     show_only = args.showOnly
 
-    for fwhm in [10,11,12]:#, "p2", "p3", "pMix"
+    for subj in [1,2,3]:
+        for fwhm in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]:#, "p2", "p3", "pMix"
 
-        name = "p5k"+str(fwhm)
+            name = "subj0"+str(subj)+"_pet_p7k"+str(fwhm)+"b8_wb_fake"
 
-        command_0 = "sshpass -p \"pokemon151\" scp -r \"wchen@cn0.medphysics.wisc.edu:~/subj01_pet_" + name
-        command_0 += "_fake.nii\" \""+name
-        command_0 += ".nii\""
-        print(command_0)
-        # os.system(command_0)
-
-        command_1 = "python S1_simulation.py --nameDataset " + name
-        command_1 += " --fwhmHub "+str(fwhm)
-        command_1 += " --gauHub 0 --poiHub 0"
-        # print(command_1)
-        # os.system(command_1)
-
-        command_2 = "python S2_createDataset.py --nameDataset "+name
-        command_2 += " --outputChannel 1"
-        # print(command_2)
-        # os.system(command_2)
-
-        command_3 = "python S3_train.py --nameDataset "+name
-        # print(command_3)
-        # os.system(command_3)
-
-        command_4 = "python S4_test.py --nameDataset "+name
-        # print(command_4)
-        # os.system(command_4)
-
-        command_5 = "python S5_assembler.py --nameDataset "+name
-        # print(command_5)
-        # os.system(command_5)
-
-        command_6 = "rm -r ./pytorch-CycleGAN-and-pix2pix/*/"+name
+            command_0 = "sshpass -p \"pokemon151\" scp -r \"wchen@cn0.medphysics.wisc.edu:/data/users/wchen/github/MIMRTL_PVC/wb_p7k_b8/" + name
+            command_0 += "*.nii.gz\" \"/Volumes/NOOK/WIMR/report/trainedOnWholeBody/"+name
+            command_0 += ".nii.gz\""
+            print(command_0)
+        
         # print(command_6)
 
-        print("Show only? ",show_only)
-        print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+            print("Show only? ",show_only)
+            print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
 
-        if show_only != "True":
-            os.system(command_0)
-            # os.system(command_1)
-            # os.system(command_2)
-            # os.system(command_3)
-            # os.system(command_4)
-            # os.system(command_5)
-            # os.system(command_6)
+            if show_only != "True":
+                os.system(command_0)
+                # os.system(command_1)
+                # os.system(command_2)
+                # os.system(command_3)
+                # os.system(command_4)
+                # os.system(command_5)
+                # os.system(command_6)
 
         
     # command_0 = "pytorch-CycleGAN-and-pix2pix"
@@ -96,6 +72,34 @@ def main():
     # print("------------------------")
     # print(command_5)
     # os.system(command_5)
+
+    # os.system(command_0)
+
+
+    # command_1 = "python S1_simulation.py --nameDataset " + name
+    # command_1 += " --fwhmHub "+str(fwhm)
+    # command_1 += " --gauHub 0 --poiHub 0"
+    # # print(command_1)
+    # # os.system(command_1)
+
+    # command_2 = "python S2_createDataset.py --nameDataset "+name
+    # command_2 += " --outputChannel 1"
+    # # print(command_2)
+    # # os.system(command_2)
+
+    # command_3 = "python S3_train.py --nameDataset "+name
+    # # print(command_3)
+    # # os.system(command_3)
+
+    # command_4 = "python S4_test.py --nameDataset "+name
+    # # print(command_4)
+    # # os.system(command_4)
+
+    # command_5 = "python S5_assembler.py --nameDataset "+name
+    # # print(command_5)
+    # # os.system(command_5)
+
+    # command_6 = "rm -r ./pytorch-CycleGAN-and-pix2pix/*/"+name
 
 
 if __name__ == "__main__":
