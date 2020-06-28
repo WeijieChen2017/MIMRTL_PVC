@@ -18,7 +18,7 @@ def main():
     print(args)
     show_only = args.showOnly
 
-    for powerFactor in [0.25, 0.5, 0.75, 1, 2, 3]
+    for powerFactor in [0.25, 0.5, 0.75, 1, 2, 3]:
 
     # for fwhm in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]:#, "p2", "p3", "pMix"
 
