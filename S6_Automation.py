@@ -25,7 +25,7 @@ def main():
         # else:
         #     name = "k8p"+str(powerFactor)+"b8"
 
-        name = "p7k"+str(fwhm)+"b8_dirty13"
+        name = "p7k"+str(fwhm)+"b8_wb"
 
         command_0 = "python S0_reverse.py --nameDataset " + name
         command_0 += " --powerFactor 0.7"
