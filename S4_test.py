@@ -16,7 +16,7 @@ def main():
     command += " --dataroot ./datasets/pMix"
     command += " --name "+name_dataset
     command += " --model "+"test"
-    command += " --num_test "+"300"
+    command += " --num_test "+"900"
     command += " --dataset_mode "+"single"
     command += " --input_nc "+"7"
     command += " --output_nc "+"1"
