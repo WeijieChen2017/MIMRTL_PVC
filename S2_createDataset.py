@@ -158,6 +158,7 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
         imgA = maxmin_norm(imgA)
         imgB = maxmin_norm(imgB)
 
+        print(imgB.shape)
         print(np.amax(imgA), np.amin(imgA))
         print(np.amax(imgB), np.amin(imgB))
 
