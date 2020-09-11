@@ -143,6 +143,7 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
     imgB = np.zeros((chanB, h, w))
     indexA = create_index(dataA, chanA)
     indexB = create_index(dataB, chanB)
+    print(np.amax(dataB), np.amin(dataB))
 
     # print(indexA)
     # print(indexB)
