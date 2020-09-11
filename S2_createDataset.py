@@ -153,10 +153,13 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
         for idx_b in range(chanB):
             imgB[idx_b, :, :] = zoom(dataB[:, :, int(indexB[idx_z, idx_b])], zoom=resize_f)
 
-        imgA, imgB = data_aug(imgA, imgB)
+        # imgA, imgB = data_aug(imgA, imgB)
 
         imgA = maxmin_norm(imgA)
         imgB = maxmin_norm(imgB)
+
+        print(np.amax(imgA), np.amin(imgA))
+        print(np.amax(imgB), np.amin(imgB))
 
         img = [imgA, imgB]
 
