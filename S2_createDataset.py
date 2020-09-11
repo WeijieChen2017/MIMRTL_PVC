@@ -143,7 +143,7 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
     imgB = np.zeros((chanB, h, w))
     indexA = create_index(dataA, chanA)
     indexB = create_index(dataB, chanB)
-    print(np.amax(dataB), np.amin(dataB), dataB.shape)
+    print(np.amax(dataB), np.amin(dataB), dataB.shape )
 
     # print(indexA)
     # print(indexB)
@@ -155,7 +155,8 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
             imgB[idx_b, :, :] = zoom(dataB[:, :, int(indexB[idx_z, idx_b])], zoom=resize_f)
 
         # imgA, imgB = data_aug(imgA, imgB)
-
+        print(np.amax(imgA), np.amin(imgA))
+        print(np.amax(imgB), np.amin(imgB))
         imgA = maxmin_norm(imgA)
         imgB = maxmin_norm(imgB)
 
