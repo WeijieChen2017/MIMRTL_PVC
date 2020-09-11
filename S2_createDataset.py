@@ -57,6 +57,7 @@ def main():
 def maxmin_norm(data):
     MAX = np.amax(data)
     MIN = np.amin(data)
+    print(MAX, MIN)
     data = (data - MIN)/(MAX-MIN)
     return data
 
