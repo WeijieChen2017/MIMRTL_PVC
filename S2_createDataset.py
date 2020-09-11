@@ -155,8 +155,8 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
 
         imgA, imgB = data_aug(imgA, imgB)
 
-        imgA = normUsed(imgA)
-        imgB = normUsed(imgB)
+        imgA = maxmin_norm(imgA)
+        imgB = maxmin_norm(imgB)
 
         img = [imgA, imgB]
 
