@@ -139,6 +139,7 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
     h, w, z = dataA.shape
     h = h*resize_f
     w = w*resize_f
+    n_save = 0
     
     imgA = np.zeros((chanA, h, w))
     imgB = np.zeros((chanB, h, w))
@@ -166,11 +167,12 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
         print(np.amax(imgB), np.amin(imgB))
 
         img = [imgA, imgB]
-
-        name2save = path2save+name_tag+"_"+str(idx_z)+".npy"
+        if np.amax(imgB)-np.amin(imgB) > 0:
+            name2save = path2save+name_tag+"_"+str(idx_z)+".npy"
+            n_save += 1
         # if save_flag:
         np.save(name2save, img)
-    print(str(z)+" images have been saved.")
+    print(str(n_save)+" images have been saved.")
 
 
 def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, output_chan=7,
