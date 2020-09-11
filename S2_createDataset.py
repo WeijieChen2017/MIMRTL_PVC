@@ -117,7 +117,7 @@ def slice5_A(dataA, name_dataset, n_slice=1, name_tag="", resize_f=1, folderName
         np.save(name2save, img)
     print(str(z)+" images have been saved.")
 
-def data_aug(imgA, imgB)
+def data_aug(imgA, imgB):
     
     shear_hub = []
     shift_hub = []
