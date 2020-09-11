@@ -171,7 +171,7 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
             name2save = path2save+name_tag+"_"+str(idx_z)+".npy"
             n_save += 1
         # if save_flag:
-        np.save(name2save, img)
+            np.save(name2save, img)
     print(str(n_save)+" images have been saved.")
 
 
