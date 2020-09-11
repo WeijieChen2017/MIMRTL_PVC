@@ -74,8 +74,8 @@ def reverse_dataset(name_dataset, mri_folder, powerFactor):
         #         otsu_data[:, :, idx] = img >= threshold_otsu(img)
         
         # reverse
-        norm_mri = 1-maxmin_norm(data_mri)
-        norm_mri[norm_mri == 1] = 0
+        norm_mri = maxmin_norm(data_mri)
+        # norm_mri[norm_mri == 1] = 0
 
         # enhance
         # power_hub = [0.5,1,2,3]

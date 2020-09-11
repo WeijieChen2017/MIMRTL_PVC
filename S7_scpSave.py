@@ -19,13 +19,13 @@ def main():
     show_only = args.showOnly
 
     for subj in [1,2,3]:
-        for fwhm in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]:#, "p2", "p3", "pMix"
+        for pf in [1,2,3,5,7]:#, "p2", "p3", "pMix"
 
-            name = "subj0"+str(subj)+"_pet_p7k"+str(fwhm)+"b8_wb_fake"
+            name = "subj0"+str(subj)+"_pet_k8p"+str(pf)+"b8_wb_fake"
 
-            command_0 = "sshpass -p \"pokemon151\" scp -r \"wchen@cn0.medphysics.wisc.edu:/data/users/wchen/github/MIMRTL_PVC/wb_p7k_b8/" + name
-            command_0 += "*.nii.gz\" \"/Volumes/NOOK/WIMR/report/trainedOnWholeBody/"+name
-            command_0 += ".nii.gz\""
+            command_0 = "sshpass -p \"pokemon151\" scp -r \"wchen@cn0.medphysics.wisc.edu:/data/users/wchen/github/MIMRTL_PVC/" + name
+            command_0 += ".nii\" \"/Volumes/NOOK/WIMR/report/wholeBody/"+name
+            command_0 += ".nii\""
             print(command_0)
         
         # print(command_6)
@@ -100,6 +100,19 @@ def main():
     # # os.system(command_5)
 
     # command_6 = "rm -r ./pytorch-CycleGAN-and-pix2pix/*/"+name
+
+    # python train.py --dataroot ./datasets/duettoHR --name duettoHR --model pix2pix --batch_size 64 --gpu_ids 0 --save_epoch_freq 200 --n_epochs 200 --n_epochs_decay 200 --input_nc 7 --output_nc 1 --netG unet_512 --direction AtoB --norm batch
+    # python test.py --dataroot ./datasets/duettoHR --name duettoHR --model test --num_test 900 --dataset_mode single --input_nc 7 --output_nc 1 --netG unet_512 --direction AtoB --norm batch --no_dropout"
+    command += " --name "+name_dataset
+    command += " --model "+"test"
+    command += " --num_test "+"900"
+    command += " --dataset_mode "+"single"
+    command += " --input_nc "+"7"
+    command += " --output_nc "+"1"
+    command += " --netG "+"unet_512"
+    command += " --direction "+"AtoB"
+    command += " --norm batch"
+    command += " --no_dropout"
 
 
 if __name__ == "__main__":

@@ -20,13 +20,13 @@ def main():
                         help='Name of training model.(unet)<str>')
     parser.add_argument('--inputChannel', metavar='', type=int, default=7,
                         help='Input channel of training dataset.(7)<int>')
-    parser.add_argument('--outputChannel', metavar='', type=int, default=1,
+    parser.add_argument('--outputChannel', metavar='', type=int, default=7,
                         help='Output channel of training dataset.(7)<int>')
     parser.add_argument('--resizeFactor', metavar='', type=int, default=1,
                         help='Resizing factor of training dataset.(1)<int>')
     parser.add_argument('--norm', metavar='', type=str, default="maxmin",
                         help='Normalization for training.(maxmin)<str>')
-    parser.add_argument('--save', metavar='', type=bool, default=True,
+    parser.add_argument('--save', metavar='', type=bool, default=False,
                         help='Whether to save images.(maxmin)<str>')
 
 
@@ -106,8 +106,8 @@ def slice5_A(dataA, name_dataset, n_slice=1, name_tag="", resize_f=1, folderName
     w = w*resize_f
     img = np.zeros((n_slice, h, w))
     index = create_index(dataA, n_slice, zeroPadding=False)
-    # emptySlice = np.zeros((h,w,1))
-    # dataA = np.concatenate((dataA, emptySlice), axis=2)
+    emptySlice = np.zeros((h,w,1))
+    dataA = np.concatenate((dataA, emptySlice), axis=2)
     print(dataA.shape)
         
     for idx_z in range(z):
@@ -116,18 +116,6 @@ def slice5_A(dataA, name_dataset, n_slice=1, name_tag="", resize_f=1, folderName
         name2save = path2save+name_tag+"_"+str(idx_z)+".npy"
         np.save(name2save, img)
     print(str(z)+" images have been saved.")
-
-def data_aug(imgA, imgB)
-    
-    shear_hub = []
-    shift_hub = []
-    scale_hub = []
-    rot_hub = []
-    crop_hub = []
-    mirrot_hub = []
-
-
-    return imgA, imgB
 
 
 def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
@@ -139,8 +127,8 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
     h = h*resize_f
     w = w*resize_f
     
-    imgA = np.zeros((chanA, h, w))
-    imgB = np.zeros((chanB, h, w))
+    imgA = np.zeros((chanA, h, w*2))
+    imgB = np.zeros((chanB, h, w*2))
     indexA = create_index(dataA, chanA)
     indexB = create_index(dataB, chanB)
 
@@ -149,14 +137,9 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
     for idx_z in range(z):
 
         for idx_a in range(chanA):
-            imgA[idx_a, :, :] = zoom(dataA[:, :, int(indexA[idx_z, idx_a])], zoom=resize_f)
+            imgA[idx_a, :, :w] = zoom(dataA[:, :, int(indexA[idx_z, idx_a])], zoom=resize_f)
         for idx_b in range(chanB):
-            imgB[idx_b, :, :] = zoom(dataB[:, :, int(indexB[idx_z, idx_b])], zoom=resize_f)
-
-        imgA, imgB = data_aug(imgA, imgB)
-
-        imgA = normUsed(imgA)
-        imgB = normUsed(imgB)
+            imgB[idx_b, :, :w] = zoom(dataB[:, :, int(indexB[idx_z, idx_b])], zoom=resize_f)
 
         img = [imgA, imgB]
 
@@ -238,7 +221,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
         for path_sim in list_sim:
             print("Pairs")
             filename_sim = os.path.basename(path_sim)[:]
-            filename_sim = filename_sim[:filename_sim.rfind(".")]
+            filename_sim = filename_sim[:filename_sim.find(".")]
             print("A:", filename_sim)
             print("B:", filename_ori)
                     
