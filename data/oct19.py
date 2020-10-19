@@ -29,12 +29,15 @@ for folder_name in folder_list:
 
             px, py, pz = nii_data.shape
             qx, qy, qz = (512, 512, 89)
-            zoom_data = zoom(nii_data, (qx/px, qy/py, qz/pz))
+            if nii_data.shape != (512, 512, 89)
+                zoom_data = zoom(nii_data, (qx/px, qy/py, qz/pz))
 
-            print("Old dim:", data.shape)
-            print("New dim:", zoom_data.shape)
+                print("Old dim:", nii_data.shape)
+                print("New dim:", zoom_data.shape)
 
-            new_file = nib.Nifti1Image(zoom_data, affine=file_affine, header=file_header)
-            nib.save(new_file, nii_dir)
+                new_file = nib.Nifti1Image(zoom_data, affine=file_affine, header=file_header)
+                nib.save(new_file, nii_dir)
+            else:
+                print("Old dim:", nii_data.shape)
     
     print("-------------------")
