@@ -29,7 +29,7 @@ for folder_name in folder_list:
 
             px, py, pz = nii_data.shape
             qx, qy, qz = (512, 512, 89)
-            if nii_data.shape != (512, 512, 89)
+            if (px != qx) or (py != qy) or (pz != qz)
                 zoom_data = zoom(nii_data, (qx/px, qy/py, qz/pz))
 
                 print("Old dim:", nii_data.shape)
