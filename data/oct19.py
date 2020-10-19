@@ -10,9 +10,9 @@ for folder_name in folder_list:
     print("-------------------")
     print(folder_name)
 
-    pure_dir = "./recon/"+expername+"/pure/"
-    blur_dir = "./recon/"+expername+"/blur/"
-    test_dir = "./recon/"+expername+"/test/"
+    pure_dir = folder_name+"/pure/"
+    blur_dir = folder_name+"/blur/"
+    test_dir = folder_name+"/test/"
 
     for subdir in [pure_dir, blur_dir, test_dir]:
         nii_list = glob.glob(subdir+"*.nii")
