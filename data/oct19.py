@@ -7,34 +7,34 @@ import os
 
 folder_list = glob.glob("./oct19_*/")
 for folder_name in folder_list:
-   	print("-------------------")
-   	print(folder_name)
+    print("-------------------")
+    print(folder_name)
 
-   	pure_dir = "./recon/"+expername+"/pure/"
+    pure_dir = "./recon/"+expername+"/pure/"
     blur_dir = "./recon/"+expername+"/blur/"
     test_dir = "./recon/"+expername+"/test/"
 
     for subdir in [pure_dir, blur_dir, test_dir]:
-    	nii_list = glob.glob(subdir+"*.nii")
-    	for nii_dir in nii_list:
-    		print(nii_dir)
-    		nii_file = nib.load(nii_dir)
-    		nii_data = nii_file.get_fdata()
+        nii_list = glob.glob(subdir+"*.nii")
+        for nii_dir in nii_list:
+            print(nii_dir)
+            nii_file = nib.load(nii_dir)
+            nii_data = nii_file.get_fdata()
 
-		    file_header = nii_file.header
-		    file_affine = nii_file.affine
+            file_header = nii_file.header
+            file_affine = nii_file.affine
 
-		    # data[data<0] = 0
-		    # data[data>1] = 1
+            # data[data<0] = 0
+            # data[data>1] = 1
 
-		    px, py, pz = nii_data.shape
-		    qx, qy, qz = (512, 512, 89)
-		    zoom_data = zoom(nii_data, (qx/px, qy/py, qz/pz))
+            px, py, pz = nii_data.shape
+            qx, qy, qz = (512, 512, 89)
+            zoom_data = zoom(nii_data, (qx/px, qy/py, qz/pz))
 
-		    print("Old dim:", data.shape)
-		    print("New dim:", zoom_data.shape)
+            print("Old dim:", data.shape)
+            print("New dim:", zoom_data.shape)
 
-    		new_file = nib.Nifti1Image(zoom_data, affine=file_affine, header=file_header)
-			nib.save(new_file, nii_dir)
-   	
-   	print("-------------------")
+            new_file = nib.Nifti1Image(zoom_data, affine=file_affine, header=file_header)
+            nib.save(new_file, nii_dir)
+    
+    print("-------------------")
