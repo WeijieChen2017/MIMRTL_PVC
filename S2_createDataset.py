@@ -243,7 +243,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
         px, py, pz = data_ori.shape
         qx, qy, qz = (256, 256, pz)
         zoom_data_ori = zoom(data_ori, (qx/px, qy/py, qz/pz))
-        print("data_ori shape: ", data_ori.shape)
+        print("data_ori shape: ", zoom_data_ori.shape)
         
         list_sim = glob.glob("./data/"+name_dataset+"/blur/*"+filename_ori+"*.nii")
         list_sim.sort()
@@ -258,7 +258,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
             px, py, pz = data_sim.shape
             qx, qy, qz = (256, 256, pz)
             zoom_data_sim = zoom(data_sim, (qx/px, qy/py, qz/pz))
-            print("data_sim shape: ", data_sim.shape)
+            print("data_sim shape: ", zoom_data_sim.shape)
             
             sliceUsed(dataA=zoom_data_sim, dataB=zoom_data_ori, chanA=input_chan, chanB=output_chan,
                       name_dataset=name_dataset, name_tag=filename_sim, resize_f=1)

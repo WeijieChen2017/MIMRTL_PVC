@@ -101,8 +101,11 @@ def main():
 
     # command_6 = "rm -r ./pytorch-CycleGAN-and-pix2pix/*/"+name
 
-    # python train.py --dataroot ./datasets/duettoHR --name duettoHR --model pix2pix --batch_size 64 --gpu_ids 0 --save_epoch_freq 200 --n_epochs 200 --n_epochs_decay 200 --input_nc 7 --output_nc 1 --netG unet_512 --direction AtoB --norm batch
-    # python test.py --dataroot ./datasets/duettoHR --name duettoHR --model test --num_test 900 --dataset_mode single --input_nc 7 --output_nc 1 --netG unet_512 --direction AtoB --norm batch --no_dropout"
+    # python S2_createDataset.py --nameDataset duettoHR
+    # python train.py --dataroot ./datasets/xy256z89_PVE --name xy256z89_PVE --model pix2pix --batch_size 80 --gpu_ids 0 --save_epoch_freq 100 --n_epochs 200 --n_epochs_decay 200 --input_nc 3 --output_nc 1 --netG unet_512 --direction AtoB --norm batch
+    # python test.py --dataroot ./datasets/duettoHR --name oct26_256 --model test --num_test 852 --dataset_mode single --input_nc 7 --output_nc 1 --netG unet_512 --direction AtoB --norm batch --no_dropout --ngf 256"
+    # python S5_assembler.py --nameDataset oct26_128 --dataFolder duettoHR
+    # rm -r ./pytorch-CycleGAN-and-pix2pix/*/oct19_9
     command += " --name "+name_dataset
     command += " --model "+"test"
     command += " --num_test "+"900"
