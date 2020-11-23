@@ -163,8 +163,8 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
         imgB = maxmin_norm(imgB)
 
         # print(imgB)
-        print(np.amax(imgA), np.amin(imgA))
-        print(np.amax(imgB), np.amin(imgB))
+        # print(np.amax(imgA), np.amin(imgA))
+        # print(np.amax(imgB), np.amin(imgB))
 
         img = [imgA, imgB]
         if np.amax(imgB)-np.amin(imgB) > 0:
@@ -252,7 +252,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
             print("B:", filename_ori)
                     
             data_sim = normUsed(nib.load(path_sim).get_fdata())
-            sliceUsed(dataA=data_sim, dataB=data_ori, chanA=7, chanB=1,
+            sliceUsed(dataA=data_sim, dataB=data_ori, chanA=input_chan, chanB=output_chan,
                       name_dataset=name_dataset, name_tag=filename_sim, resize_f=1)
             
         print("------------------------------------------------------------------------")
