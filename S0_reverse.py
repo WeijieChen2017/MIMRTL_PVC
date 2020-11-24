@@ -59,7 +59,7 @@ def reverse_dataset(name_dataset, mri_folder, powerFactor):
     if not os.path.exists(mri_path):
         os.makedirs(mri_path)
 
-    list_ori = glob.glob(mri_path+"*.nii")
+    list_ori = glob.glob(mri_path+"*.nii.gz")
     list_ori.sort()
     for path_ori in list_ori:
         print(path_ori)
@@ -82,7 +82,7 @@ def reverse_dataset(name_dataset, mri_folder, powerFactor):
         # for power in power_hub:
         norm_mri_p = norm_mri ** powerFactor
         file_inv = nib.Nifti1Image(norm_mri_p, nii_file.affine, nii_file.header)
-        save_name = pure_path+"/"+nii_name+"_inv_mask_p"+str(powerFactor)+".nii"
+        save_name = pure_path+"/"+nii_name+"_inv_p"+str(powerFactor)+".nii"
         nib.save(file_inv, save_name)
             
         print(save_name)
