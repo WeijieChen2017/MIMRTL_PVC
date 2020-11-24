@@ -201,7 +201,12 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
         filename_ori = filename_ori[:filename_ori.find(".")]
         print(filename_ori)
         data_ori = normUsed(nib.load(path_ori).get_fdata())
-        slice5_A(dataA=data_ori, name_dataset=name_dataset, n_slice=input_chan,
+        px, py, pz = data_ori.shape
+        qx, qy, qz = (256, 256, pz)
+        zoom_data_ori = zoom(data_ori, (qx/px, qy/py, qz/pz))
+        print("data_ori shape: ", zoom_data_ori.shape)
+
+        slice5_A(dataA=zoom_data_ori, name_dataset=name_dataset, n_slice=input_chan,
                   name_tag=filename_ori, resize_f = resize_f, folderName='test')
         print("------------------------------------------------------------------------")
 
