@@ -55,7 +55,7 @@ def reverse_dataset(name_dataset, mri_folder, powerFactor):
     if not os.path.exists(test_path):
         os.makedirs(test_path)
 
-    mri_path = "./data/"+mri_folder+"/"
+    mri_path = "./data/"+name_dataset+"/mri/"
     if not os.path.exists(mri_path):
         os.makedirs(mri_path)
 
