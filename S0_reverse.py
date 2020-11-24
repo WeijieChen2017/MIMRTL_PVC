@@ -75,7 +75,8 @@ def reverse_dataset(name_dataset, mri_folder, powerFactor):
         
         # reverse
         norm_mri = maxmin_norm(data_mri)
-        # norm_mri[norm_mri == 1] = 0
+        norm_mri = 1-norm_mri
+        norm_mri[norm_mri == 1] = 0
 
         # enhance
         # power_hub = [0.5,1,2,3]
