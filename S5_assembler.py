@@ -49,11 +49,11 @@ def assemble_results(name_dataset="sk8R", data_folder="pMix", output_chan=7, res
         nii_name = os.path.basename(path_ori)[:-4]
         nii_file = nib.load(path_ori)
         nii_data = np.asanyarray(nii_file.dataobj)
-        px, py, pz = nii_data.shape
+        qx, qy, qz = nii_data.shape
         
         
     #     pred_real = np.zeros((nii_data.shape[0], nii_data.shape[1], nii_data.shape[2]))
-        pred_fake = np.zeros((px, py, pz))
+        pred_fake = np.zeros((qx, qy, qz))
         
         for idx in range(nii_data.shape[2]):
     #         path_real = "./pytorch-CycleGAN-and-pix2pix/results/"+name_dataset+"/test_latest/images/"+nii_name+"_"+str(idx)+"_real.npy"
@@ -67,10 +67,10 @@ def assemble_results(name_dataset="sk8R", data_folder="pMix", output_chan=7, res
             
             # img[img<0] = 0
             if output_chan == 1:
-                qx, qy = img.shape
+                px, py = img.shape
                 img = zoom(img, (qx/px, qy/py))
             else:
-                qz, qx, qy = img.shape
+                pz, px, py = img.shape
                 img = zoom(img[int(output_chan//2), :, :], (qx/px, qy/py))
             pred_fake[:, :, idx] = zoom(img, zoom=1/resize_f)
         
