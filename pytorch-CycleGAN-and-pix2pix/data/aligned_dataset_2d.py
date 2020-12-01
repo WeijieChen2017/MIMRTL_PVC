@@ -4,7 +4,18 @@ from data.image_folder import make_dataset
 from PIL import Image
 import numpy as np
 import torch
+import torchvision.transforms as transforms
 
+def transform_generator(seed):
+    random.seed(seed)
+    tensor_transforms = transforms.Compose([
+        transforms.RandomAffine(degrees = (-180, 180),
+                                translate = (0.25, 0.25),
+                                scale = 0.25,
+                                shear = (-0.25, 0.25, -0.25, 0.25)),
+        transforms.RandomHorizontalFlip(),
+        transforms.RandomVerticalFlip()])
+    return tensor_transforms
 
 class AlignedDataset(BaseDataset):
     """A dataset class for paired image dataset.
@@ -66,6 +77,11 @@ class AlignedDataset(BaseDataset):
             
         A = torch.from_numpy(data_A).float()
         B = torch.from_numpy(data_B).float()
+
+        seed = np.random.randint(2147483647) 
+        transformer = transform_generator(seed)
+        A = transformer(A)
+        B = transformer(B)
 
         # print(A.size(), B.size())
         # normalization has been done during creating dataset
