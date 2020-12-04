@@ -24,8 +24,7 @@ def main():
     print("name_dataset=", name_dataset)
     print("data_folder=", data_folder)
 
-    assemble_results(name_dataset=name_dataset, data_folder=data_folder,
-                     output_chan=output_chan, resize_f=resize_f)
+    eval_results(name_dataset=name_dataset, data_folder=data_folder)
 
 
 def eval_results(name_dataset="sk8R", data_folder="pMix"):
