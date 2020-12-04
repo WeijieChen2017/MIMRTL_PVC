@@ -41,6 +41,10 @@ def main():
 def assemble_results(name_dataset="sk8R", data_folder="pMix", output_chan=7, resize_f=1):
     # test_folder = "testB"
 
+    recon_path = "./data/"+data_folder+"/recon/"
+    if not os.path.exists(recon_path):
+        os.makedirs(recon_path)
+
     list_ori = glob.glob("./data/"+data_folder+"/test/*.nii")
     # list_ori = glob.glob("./data/sk8R_721/test/*.nii")
     list_ori.sort()
