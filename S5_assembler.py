@@ -91,7 +91,7 @@ def assemble_results(name_dataset="sk8R", data_folder="pMix", output_chan=7, res
     #     file_real = nib.Nifti1Image(pred_real*factor_r, nii_file.affine, nii_file.header)
     #     nib.save(file_real, "./"+nii_name+"_"+name_dataset+"_real.nii")
         file_fake = nib.Nifti1Image(pred_fake*factor_f, nii_file.affine, nii_file.header)
-        nib.save(file_fake, "./"+nii_name+"_"+name_dataset+"_fake.nii")
+        nib.save(file_fake, recon_path+nii_name+"_"+name_dataset+"_fake.nii")
     print("------------------------------------------------------------")
     print("----------------------Finished------------------------------")
     print("------------------------------------------------------------")
