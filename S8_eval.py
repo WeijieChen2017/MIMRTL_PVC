@@ -30,13 +30,13 @@ def main():
 
 def eval_results(name_dataset="sk8R", data_folder="pMix"):
     recon_list = glob.glob("./data/"+data_folder+"/recon/*.nii")
-recon_list.sort()
-metric_xls = xlwt.Workbook()
+    recon_list.sort()
+    metric_xls = xlwt.Workbook()
 
-metric_tab_eval = metric_xls.add_sheet("eval")
-metric_tab_eval.write(0, 1, "NRMSE")
-metric_tab_eval.write(0, 2, "PSNR")
-metric_tab_eval.write(0, 3, "SSIM")
+    metric_tab_eval = metric_xls.add_sheet("eval")
+    metric_tab_eval.write(0, 1, "NRMSE")
+    metric_tab_eval.write(0, 2, "PSNR")
+    metric_tab_eval.write(0, 3, "SSIM")
 
 for idx_p, recon_path in enumerate(recon_list):
     recon_name = os.path.basename(recon_path)
