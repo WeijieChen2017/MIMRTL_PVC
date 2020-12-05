@@ -197,10 +197,11 @@ class BaseModel(ABC):
                         idx2 = idx1 + 11
                         if int(key[idx2]) >= 6:
                             old_key = key
-                            new_key = key[:idx2-1]+str(int(key[idx2])-1)+key[idx2+1:]
-                            # a_dict[new_key] = a_dict.pop(old_key)
+                            new_key = key[:idx2]+str(int(key[idx2])-1)+key[idx2+1:]
+                            state_dict[new_key] = state_dict.pop(old_key)
                             print(new_key)
-                    print(key)
+                    else:
+                        print(key)
                 if hasattr(state_dict, '_metadata'):
                     del state_dict._metadata
                 # patch InstanceNorm checkpoints prior to 0.4
