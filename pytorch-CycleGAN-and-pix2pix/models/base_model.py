@@ -171,6 +171,8 @@ class BaseModel(ABC):
                (key == 'num_batches_tracked'):
                 state_dict.pop('.'.join(keys))
         else:
+            if key == "7":
+                print(module)
             self.__patch_instance_norm_state_dict(state_dict, getattr(module, key), keys, i + 1)
 
     def load_networks(self, epoch):
@@ -190,7 +192,6 @@ class BaseModel(ABC):
                 # if you are using PyTorch newer than 0.4 (e.g., built from
                 # GitHub source), you can remove str() on self.device
                 state_dict = torch.load(load_path, map_location=str(self.device))
-                print(state_dict.keys())
                 if hasattr(state_dict, '_metadata'):
                     del state_dict._metadata
                 for one_dict in state_dict:
