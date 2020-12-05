@@ -163,6 +163,7 @@ class BaseModel(ABC):
         key = keys[i]
         # print(keys)
         if i + 1 == len(keys):  # at the end, pointing to a parameter/buffer
+            print(keys)
             if module.__class__.__name__.startswith('InstanceNorm') and \
                     (key == 'running_mean' or key == 'running_var'):
                 if getattr(module, key) is None:
