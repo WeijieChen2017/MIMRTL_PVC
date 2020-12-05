@@ -41,7 +41,7 @@ def eval_results(name_dataset="sk8R", data_folder="pMix"):
         recon_name = os.path.basename(recon_path)
         gt_name = recon_name[:-len(name_dataset)-13]+"rec.nii"
         gt_path = "./data/"+data_folder+"/gt/"+gt_name
-        metric_tab = metric_xls.add_sheet(gt_name[17:20])
+        metric_tab_eval = metric_xls.add_sheet(gt_name[17:20])
         metric_tab_eval.write(idx_p+1, 0, gt_name[17:20])
         
         print("-------------------------------------")
