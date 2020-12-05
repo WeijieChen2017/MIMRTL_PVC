@@ -195,7 +195,8 @@ class BaseModel(ABC):
                     idx1 = key.find("conv_block")
                     if idx1 > 0:
                         idx2 = idx1 + 11
-                        print(key[idx2])
+                        if int(idx2) >= 6:
+                            key[idx2] = str(int(idx2)-1)
                     print(key)
                 if hasattr(state_dict, '_metadata'):
                     del state_dict._metadata
