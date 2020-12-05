@@ -193,7 +193,7 @@ class BaseModel(ABC):
                 for key in list(state_dict.keys()):
                     print("-----------")
                     print(key[8:17])
-                    if (len(key) > 21) and (key[8:17] == "conv_block"):
+                    if (len(key) > 21) and (key[9:19] == "conv_block"):
                         print(int(key[21]))
                         if int(key[21]) >= 6:
                             key[21] = str(int(key[21])-1)
