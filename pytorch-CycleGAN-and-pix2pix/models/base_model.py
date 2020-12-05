@@ -192,6 +192,7 @@ class BaseModel(ABC):
                 state_dict = torch.load(load_path, map_location=str(self.device))
                 for key in list(state_dict.keys()):
                     print("-----------")
+                    print(key[8:17])
                     if (len(key) > 21) and (key[8:17] == "conv_block"):
                         print(int(key[21]))
                         if int(key[21]) >= 6:
