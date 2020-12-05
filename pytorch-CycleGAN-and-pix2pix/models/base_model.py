@@ -192,10 +192,9 @@ class BaseModel(ABC):
                 state_dict = torch.load(load_path, map_location=str(self.device))
                 for key in list(state_dict.keys()):
                     print("-----------")
-                    print(key.type)
-                    print(len(key))
-                    if int(key[21]) >= 6:
-                        key[21] = str(int(key[21])-1)
+                    if len(key) > 21:
+                        if int(key[21]) >= 6:
+                            key[21] = str(int(key[21])-1)
                     print(key)
                 if hasattr(state_dict, '_metadata'):
                     del state_dict._metadata
