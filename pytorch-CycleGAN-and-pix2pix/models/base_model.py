@@ -172,7 +172,7 @@ class BaseModel(ABC):
                 state_dict.pop('.'.join(keys))
         else:
             if key == "7":
-                print(module)
+                key = 6
             self.__patch_instance_norm_state_dict(state_dict, getattr(module, key), keys, i + 1)
 
     def load_networks(self, epoch):
