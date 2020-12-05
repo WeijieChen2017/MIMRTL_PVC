@@ -36,14 +36,15 @@ def eval_results(name_dataset="sk8R", data_folder="pMix"):
     metric_tab_eval.write(0, 1, "NRMSE")
     metric_tab_eval.write(0, 2, "PSNR")
     metric_tab_eval.write(0, 3, "SSIM")
+    eval_cnt = 1
 
-    for idx_p, recon_path in enumerate(recon_list):
+    for recon_path in recon_list:
         if name_dataset in recon_path and data_folder in recon_path:
             recon_name = os.path.basename(recon_path)
             gt_name = recon_name[:-len(name_dataset)-13]+"rec.nii"
             gt_path = "./data/"+data_folder+"/gt/"+gt_name
             metric_tab = metric_xls.add_sheet(gt_name[17:20])
-            metric_tab_eval.write(idx_p+1, 0, gt_name[17:20])
+            metric_tab_eval.write(eval_cnt, 0, gt_name[17:20])
             
             print("-------------------------------------")
             print(gt_name)
@@ -75,7 +76,8 @@ def eval_results(name_dataset="sk8R", data_folder="pMix"):
                         qualified_metric.append(current_metric)
                         metric_tab.write(idx_z+1, idx_m+1, current_metric)
                 qualified_metric = np.asarray(qualified_metric)
-                metric_tab_eval.write(idx_p+1, idx_m+1, np.mean(qualified_metric))
+                metric_tab_eval.write(eval_cnt, idx_m+1, np.mean(qualified_metric))
+                eval_cnt += 1
     metric_xls.save("M-"+name_dataset+"+D-"+data_folder+".xls")
     print("------------------------------------------------------------")
     print("----------------------Finished------------------------------")
