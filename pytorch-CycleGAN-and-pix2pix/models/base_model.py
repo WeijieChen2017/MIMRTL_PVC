@@ -196,7 +196,6 @@ class BaseModel(ABC):
                     if idx1 > 0:
                         idx2 = idx1 + 11
                         if int(key[idx2]) >= 6:
-                            key[idx2] = str(int(idx2)-1)
                             old_key = key
                             new_key = key[:idx2-1]+str(int(key[idx2])-1)+key[idx2+1:]
                             # a_dict[new_key] = a_dict.pop(old_key)
