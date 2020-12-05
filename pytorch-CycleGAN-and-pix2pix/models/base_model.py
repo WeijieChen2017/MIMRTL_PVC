@@ -194,7 +194,8 @@ class BaseModel(ABC):
                 print(state_dict.keys())
                 if hasattr(state_dict, '_metadata'):
                     del state_dict._metadata
-
+                for one_dict in state_dict:
+                    print(one_dict) 
                 # patch InstanceNorm checkpoints prior to 0.4
                 for key in list(state_dict.keys()):  # need to copy keys here because we mutate in loop
                     print(key)
