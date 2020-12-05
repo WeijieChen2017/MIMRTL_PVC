@@ -190,8 +190,8 @@ class BaseModel(ABC):
                 # if you are using PyTorch newer than 0.4 (e.g., built from
                 # GitHub source), you can remove str() on self.device
                 state_dict = torch.load(load_path, map_location=str(self.device))
-                for state in state_dict:
-                    print(state_dict)
+                for key in list(state_dict.keys()):
+                    print(key)
                 if hasattr(state_dict, '_metadata'):
                     del state_dict._metadata
                 # patch InstanceNorm checkpoints prior to 0.4
