@@ -77,7 +77,7 @@ def eval_results(name_dataset="sk8R", data_folder="pMix"):
                         metric_tab.write(idx_z+1, idx_m+1, current_metric)
                 qualified_metric = np.asarray(qualified_metric)
                 metric_tab_eval.write(eval_cnt, idx_m+1, np.mean(qualified_metric))
-                eval_cnt += 1
+            eval_cnt += 1
     metric_xls.save("M-"+name_dataset+"+D-"+data_folder+".xls")
     print("------------------------------------------------------------")
     print("----------------------Finished------------------------------")
