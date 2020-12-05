@@ -192,11 +192,10 @@ class BaseModel(ABC):
                 state_dict = torch.load(load_path, map_location=str(self.device))
                 for key in list(state_dict.keys()):
                     print("-----------")
-                    print(key[8:17])
-                    if (len(key) > 21) and (key[9:19] == "conv_block"):
-                        print(int(key[21]))
-                        if int(key[21]) >= 6:
-                            key[21] = str(int(key[21])-1)
+                    idx1 = key.find("conv_block")
+                    if idx1 > 0:
+                        idx2 = idx1 + 11
+                        print(key[idx2])
                     print(key)
                 if hasattr(state_dict, '_metadata'):
                     del state_dict._metadata
