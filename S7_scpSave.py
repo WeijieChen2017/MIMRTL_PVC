@@ -101,7 +101,7 @@ def main():
 
     # command_6 = "rm -r ./pytorch-CycleGAN-and-pix2pix/*/"+name
 
-    # python S2_createDataset --nameDataset BraTS --inputChannel 5 --outputChannel 1
+    # python S2_createDataset.py --nameDataset BraTS_1024 --inputChannel 5 --outputChannel 1
     # python train.py --dataroot ./datasets/BraTS --name BraTS_DA5_R9 --model pix2pix --batch_size 8 --gpu_ids 0 --save_epoch_freq 100 --n_epochs 100 --n_epochs_decay 100 --input_nc 5 --output_nc 1 --netG resnet_9blocks --direction AtoB --norm batch --continue_train
     # python test.py --dataroot ./datasets/BraTS --name BraTS_DA5_R9 --model test --num_test 8000 --dataset_mode single --input_nc 5 --output_nc 1 --netG resnet_9blocks --direction AtoB --norm batch --no_dropout
     # python S5_assembler.py --nameDataset BraTS_DA5_R9 --dataFolder BraTS
