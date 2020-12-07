@@ -258,7 +258,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
             print("B:", filename_ori)
             data_sim = normUsed(nib.load(path_sim).get_fdata())
             px, py, pz = data_sim.shape
-            qx, qy, qz = (512, 512, pz)
+            qx, qy, qz = (1024, 1024, pz)
             zoom_data_sim = zoom(data_sim, (qx/px, qy/py, qz/pz))
             print("data_sim shape: ", zoom_data_sim.shape)
             
