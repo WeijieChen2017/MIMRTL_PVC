@@ -88,7 +88,7 @@ def process_data_DL(mat_data, name_dataset, mat_tag, mat_key, mat_name, tmpl_hea
 
         smoothed_file = processing.smooth_image(save_file, fwhm=3, mode='nearest')
         save_name = "./data/"+name_dataset+"/"+mat_tag+"_f3/"+os.path.basename(mat_name)[:20]+".nii"
-        nib.save(save_file, save_name)
+        nib.save(smoothed_file, save_name)
         print(save_name)
 
 if __name__ == "__main__":
