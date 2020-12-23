@@ -15,8 +15,8 @@ def main():
 
     parser.add_argument('--nameDataset', metavar='', type=str, default="Gibbs",
                         help='Name for the dataset needed to be blur.(Gibbs)<str>') 
-    parser.add_argument('--testOnly', action='store_false',
-                        help='Whether only search test dataset.(False)<bool>')
+    parser.add_argument('--testOnly', action='store_true',
+                        help='Whether only search test dataset.(store_true)<bool>')
 
     args = parser.parse_args()
     name_dataset = args.nameDataset
