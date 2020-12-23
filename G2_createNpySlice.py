@@ -154,7 +154,7 @@ def createAB(dataA, dataB, name_dataset, chanA=7, chanB=1,
 
 
 def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, output_chan=7,
-                   resize_f=1, norm="maxmin", save_flag=False):
+                   resize_f=1, norm="maxmin", save_flag=False, test_only=False):
 
     for folder_name in ["train", "test", "trainA", "trainB", "testA", "testB"]:
         path = "./pytorch-CycleGAN-and-pix2pix/datasets/"+name_dataset+"/"+folder_name+"/"
