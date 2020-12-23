@@ -175,7 +175,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
     list_X.sort()
     print("Test:")
     for path_X in list_X:
-        filename_X = os.path.basename(path_X)[:]
+        filename_X = os.path.basename(path_X)[:-4]
         print(filename_X)
         data_X = normUsed(nib.load(path_X).get_fdata())
         px, py, pz = data_X.shape
