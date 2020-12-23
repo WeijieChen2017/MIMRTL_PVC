@@ -58,10 +58,10 @@ def main():
                     pass  # or you could use 'continue'
 
                 process_data_DL(mat_data=mat_data, name_dataset=name_dataset,
-                                mat_tag=mat_tag, mat_key=mat_key, 
+                                mat_tag=mat_tag, mat_key=mat_key, mat_name=mat_name
                                 tmpl_header=tmpl_header, tmpl_affine=tmpl_affine)
 
-def process_data_DL(mat_data, name_dataset, mat_tag, mat_key, tmpl_header, tmpl_affine):
+def process_data_DL(mat_data, name_dataset, mat_tag, mat_key, mat_name, tmpl_header, tmpl_affine):
 
     if mat_key == "recon":
         print("Data dim:", mat_data.shape)
