@@ -64,7 +64,7 @@ def process_data_DL(mat_data, name_dataset, mat_tag, mat_key, tmpl_header, tmpl_
 
     if tag == "recon":
         print("Data dim:", mat_data.shape)
-        save_name = "./data/"+name_dataset+"/"+mat_tag+"_"+mat_key"/"+os.path.basename(mat_name)[:20]+".nii"
+        save_name = "./data/"+name_dataset+"/"+mat_tag+"_"+mat_key+"/"+os.path.basename(mat_name)[:20]+".nii"
         save_file = nib.Nifti1Image(data, affine=tmpl_affine, header=tmpl_header)
         nib.save(save_file, save_name)
         print(save_name)
