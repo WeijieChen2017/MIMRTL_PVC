@@ -63,14 +63,14 @@ def main():
 
 def process_data_DL(mat_data, name_dataset, mat_tag, mat_key, tmpl_header, tmpl_affine):
 
-    if tag == "recon":
+    if mat_key == "recon":
         print("Data dim:", mat_data.shape)
         save_name = "./data/"+name_dataset+"/"+mat_tag+"_"+mat_key+"/"+os.path.basename(mat_name)[:20]+".nii"
         save_file = nib.Nifti1Image(data, affine=tmpl_affine, header=tmpl_header)
         nib.save(save_file, save_name)
         print(save_name)
 
-    if tag == "t1":
+    if mat_key == "t1":
         px, py, pz = mat_data.shape
         qx, qy, qz = (256, 256, 56)
         zoom_data = zoom(mat_data, (qx/px, qy/py, qz/pz))
