@@ -238,7 +238,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
     list_ori.sort()
     print("Train:")
     for path_ori in list_ori:
-        filename_ori = os.path.basename(path_ori)[:]
+        filename_ori = os.path.basename(path_ori)[:-4]
         # filename_ori = filename_ori[:filename_ori.find(".")-4]
         print(filename_ori)
         data_ori = normUsed(nib.load(path_ori).get_fdata())
@@ -253,7 +253,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
         
         for path_sim in list_sim:
             print("Pairs")
-            filename_sim = os.path.basename(path_sim)[:]
+            filename_sim = os.path.basename(path_sim)[:-4]
             # filename_sim = filename_sim[:filename_sim.rfind(".")-4]
             print("A:", filename_sim)
             print("B:", filename_ori)
