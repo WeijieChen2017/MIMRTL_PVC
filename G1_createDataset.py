@@ -21,8 +21,6 @@ def main():
     args = parser.parse_args()
     name_dataset = args.nameDataset
     flag_test_only = args.testOnly
-    print(flag_test_only)
-    exit()
 
     tmpl_name = "./zeros_PET.nii"
     tmpl_nii = nib.load(tmpl_name)
