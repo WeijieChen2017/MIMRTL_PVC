@@ -176,7 +176,6 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
     print("Test:")
     for path_X in list_X:
         filename_X = os.path.basename(path_X)[:]
-        filename_X = filename_ori[:filename_X.find(".")]
         print(filename_X)
         data_X = normUsed(nib.load(path_X).get_fdata())
         px, py, pz = data_X.shape
@@ -194,7 +193,6 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
         print("Train:")
         for path_X in list_X:
             filename_X = os.path.basename(path_X)[:-4]
-            # filename_ori = filename_ori[:filename_ori.find(".")-4]
             print(filename_X)
             data_X = normUsed(nib.load(path_X).get_fdata())
             px, py, pz = data_ori.shape
