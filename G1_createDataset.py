@@ -41,26 +41,26 @@ tmpl_nii = nib.load(tmpl_name)
 tmpl_header = tmpl_nii.header
 tmpl_affine = tmpl_nii.affine
 
-mat_key = "t1"
-mat_list = glob.glob("./"+mat_key+"/*.mat")
-mat_list.sort()
-for mat_name in mat_list:
-    print("-----------------------------------------------")
-    mdict = loadmat(mat_name)
+for mat_key in ["recon"]:
+	mat_list = glob.glob("./"+mat_key+"/*.mat")
+	mat_list.sort()
+	for mat_name in mat_list:
+	    print("-----------------------------------------------")
+	    mdict = loadmat(mat_name)
 
-    try:
-        mat_data = mdict["reconImg"]
-    except Exception:
-        pass  # or you could use 'continue'
+	    try:
+	        mat_data = mdict["reconImg"]
+	    except Exception:
+	        pass  # or you could use 'continue'
 
-    try:
-        mat_data = mdict["data"]
-    except Exception:
-        pass  # or you could use 'continue'
+	    try:
+	        mat_data = mdict["data"]
+	    except Exception:
+	        pass  # or you could use 'continue'
 
-#     print(mat_data.shape)
-    if mat_key == "t1":
-        process_data_t1_DL(mat_data)
-    if mat_key == "recon":
-        process_data_recon_DL(mat_data)
+	#     print(mat_data.shape)
+	    if mat_key == "t1":
+	        process_data_t1_DL(mat_data)
+	    if mat_key == "recon":
+	        process_data_recon_DL(mat_data)
 
