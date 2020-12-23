@@ -202,7 +202,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
         print(filename_ori)
         data_ori = normUsed(nib.load(path_ori).get_fdata())
         px, py, pz = data_ori.shape
-        qx, qy, qz = (1024, 1024, pz)
+        qx, qy, qz = (256, 256, pz)
         zoom_data_ori = zoom(data_ori, (qx/px, qy/py, qz/pz))
         print("data_ori shape: ", zoom_data_ori.shape)
 
@@ -246,6 +246,7 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
         qx, qy, qz = (256, 256, pz)
         zoom_data_ori = zoom(data_ori, (qx/px, qy/py, qz/pz))
         print("data_ori shape: ", zoom_data_ori.shape)
+        print("./data/"+name_dataset+"/blur/*"+filename_ori+"*.nii")
         
         list_sim = glob.glob("./data/"+name_dataset+"/blur/*"+filename_ori+"*.nii")
         list_sim.sort()
