@@ -63,7 +63,7 @@ def process_data_test_DL(data):
     nib.save(smoothed_file, save_name)
     print(save_name)
 
-tmpl_name = "./test_data/zeros_PET.nii"
+tmpl_name = "./zeros_PET.nii"
 tmpl_nii = nib.load(tmpl_name)
 tmpl_header = tmpl_nii.header
 tmpl_affine = tmpl_nii.affine
@@ -74,7 +74,7 @@ for folder_name in ["gt", "gt_f3", "blur", "test", "pure"]:
             os.makedirs(path)
 
 for mat_key in ["test"]:
-	mat_list = glob.glob("./"+mat_key+"/*.mat")
+	mat_list = glob.glob("./nifty/Dec18/"+mat_key+"/*.mat")
 	mat_list.sort()
 	for mat_name in mat_list:
 	    print("-----------------------------------------------")
