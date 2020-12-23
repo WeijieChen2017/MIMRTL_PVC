@@ -40,7 +40,7 @@ def main():
 
 def assemble_results(name_dataset="sk8R", data_folder="pMix", output_chan=7, resize_f=1):
 
-    syn_path = "./nifty/"+data_folder+"/syn/"
+    syn_path = "./nifty/"+data_folder+"/test_syn/"
     if not os.path.exists(syn_path):
         os.makedirs(syn_path)
 
