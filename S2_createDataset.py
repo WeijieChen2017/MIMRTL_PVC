@@ -239,11 +239,11 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
     print("Train:")
     for path_ori in list_ori:
         filename_ori = os.path.basename(path_ori)[:]
-        filename_ori = filename_ori[:filename_ori.find(".")-4]
+        # filename_ori = filename_ori[:filename_ori.find(".")-4]
         print(filename_ori)
         data_ori = normUsed(nib.load(path_ori).get_fdata())
         px, py, pz = data_ori.shape
-        qx, qy, qz = (1024, 1024, pz)
+        qx, qy, qz = (256, 256, pz)
         zoom_data_ori = zoom(data_ori, (qx/px, qy/py, qz/pz))
         print("data_ori shape: ", zoom_data_ori.shape)
         
@@ -253,12 +253,12 @@ def create_dataset(name_dataset='sk8R', name_model = "unet", input_chan=7, outpu
         for path_sim in list_sim:
             print("Pairs")
             filename_sim = os.path.basename(path_sim)[:]
-            filename_sim = filename_sim[:filename_sim.rfind(".")-4]
+            # filename_sim = filename_sim[:filename_sim.rfind(".")-4]
             print("A:", filename_sim)
             print("B:", filename_ori)
             data_sim = normUsed(nib.load(path_sim).get_fdata())
             px, py, pz = data_sim.shape
-            qx, qy, qz = (1024, 1024, pz)
+            qx, qy, qz = (256, 256, pz)
             zoom_data_sim = zoom(data_sim, (qx/px, qy/py, qz/pz))
             print("data_sim shape: ", zoom_data_sim.shape)
             
